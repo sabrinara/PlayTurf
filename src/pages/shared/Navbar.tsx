@@ -74,11 +74,11 @@ export default function Navbar() {
         <div className="md:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="p-2 text-orange-400">
+              <button className="p-2 text-[#42f5f5] mr-2">
                 <Menu className="h-6 w-6" />
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-48 bg-neutral-900 text-orange-600 border-neutral-900">
+            <DropdownMenuContent className="w-32 mr-4 bg-[#002a4b] text-[#42f5f5] border-[#002a4b]">
               {data.map((item) => (
                 <DropdownMenuItem key={item.id} asChild className="text-xs  font-medium">
                   <Link to={item.path}>
