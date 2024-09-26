@@ -1,8 +1,8 @@
 export default function Footer() {
   return (
     <div>
-      {" "}
-      <footer className="bg-gray-800 text-gray-400 py-6">
+   
+      <div className="bg-gray-800 text-gray-400 py-6">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
@@ -22,7 +22,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </footer>
+      </div>
     </div>
   );
 }
