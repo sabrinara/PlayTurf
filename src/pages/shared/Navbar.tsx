@@ -42,7 +42,7 @@ export default function Navbar() {
   ];
 
   return (
-    <div className=" md:top-6 py-5 bg-[#102e46] md:mx-4 md:rounded-full md:px-10">
+    <div className="sticky md:top-6 py-5 bg-[#102e46] md:mx-4 md:rounded-full md:px-10">
       <div className="flex  items-center justify-between lg:p-0 gap-2">
         <Link to="/">
           <div className="flex items-center">
