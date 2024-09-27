@@ -6,9 +6,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Link } from "react-router-dom";
-import { BsCartCheckFill } from "react-icons/bs";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
-import { Menu } from "lucide-react"; // Import an icon for the toggle button
+import { Menu } from "lucide-react"; 
 
 export default function Navbar() {
   const data = [
@@ -35,10 +34,15 @@ export default function Navbar() {
     },
   
     {
-      id: 5,
-      name: <BsCartCheckFill className="text-2xl" />,
-      path: "/cart",
+      id: 6,
+      name: "Login",
+      path: "/login",
     },
+    {
+      id: 7,
+      name: "Register",
+      path: "/register",
+    }
   ];
 
   return (
