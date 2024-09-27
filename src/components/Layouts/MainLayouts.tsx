@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
-    <div className="bg-[#000924] h-screen">
+    <div className="bg-[#000924] ">
       <Navbar />
       <Outlet ></Outlet>
       {/* <Footer ></Footer> */}

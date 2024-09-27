@@ -1,0 +1,113 @@
+
+
+.start ul li:nth-child(1){
+    background: url(images/process-top-1.png) 65px top no-repeat !important; /*here is the above icon image  */
+    padding-top: 180px !important;
+}
+.start ul li:nth-child(odd){
+    background: url(images/process-line-3.png) 160px top no-repeat;
+    padding-right: 590px;
+    padding-top: 100px !important;
+}
+.start ul li:nth-child(even){
+    background: url(images/process-line-2.png) 160px top no-repeat;
+    padding-left: 590px;
+    padding-top: 100px;
+}
+
+
+.start ul li .icon{
+    margin: 30px 0px;
+    display: inline-block;
+    height: 124px;
+    width: 124px;
+    margin-right: 30px;
+    text-align: center;
+}
+
+.start ul li h4{
+    color: white;
+    text-transform: uppercase;
+    font-size: 30px;
+
+}
+
+/* .start ul li .media-body{
+   width: 400px;
+} */
+
+.start ul li p{
+    color: white;
+}
+
+.home .process:after{
+    /* background: url(images/client-bg-1.png) center top no-repeat; */
+    height: 100%;
+    /* position: absolute; */
+    top: 0;
+    content: "";
+    width: 100%;
+    z-index: 1;
+}
+
+.home .process:before{
+    /* position: absolute; */
+    top: 0;
+    content: "";
+    width: 100%;
+    left: 0px;
+    background: white;
+  
+}
+
+.icon img{
+    width: 190px;
+    height: 190px;
+    margin-left: -30px;
+    margin-top: -20px;
+    border: white;
+    animation: ani 2s ease-in-out infinite;
+
+}
+
+.one img{
+    margin-left: 80px;
+}
+
+
+.two img{
+    width: 180px;
+    height: 180px;
+    margin-left: 100px;
+    margin-top: -20px;
+}
+
+.three img{
+    width: 150px;
+    height: 150px;
+    margin-left: 80px;
+}
+
+.four img{
+    width: 165px;
+    height: 165px;
+    margin-left: 100px;
+}
+
+
+.five img{
+    width: 175px;
+    height: 175px;
+    margin-left: 80px;
+    margin-top: -20px;
+
+}
+
+@keyframes ani {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

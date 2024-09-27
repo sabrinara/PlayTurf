@@ -42,7 +42,7 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="sticky md:top-6 py-5 bg-[#002a4b] md:mx-4 md:rounded-full md:px-10">
+    <div className=" md:top-6 py-5 bg-[#102e46] md:mx-4 md:rounded-full md:px-10">
       <div className="flex  items-center justify-between lg:p-0 gap-2">
         <Link to="/">
           <div className="flex items-center">
@@ -60,7 +60,7 @@ export default function Navbar() {
               <NavigationMenuItem key={item.id}>
                 <Link to={item.path}>
                   <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} bg-[#002a4b] text-[#42f5f5] text-lg font-bold sm:text-base hover:rounded-full hover:bg-[#00c3ff] hover:text-[#000924] rounded-none`}
+                    className={`${navigationMenuTriggerStyle()} bg-[#102e47] text-[#42f5f5] text-lg font-bold sm:text-base hover:rounded-full hover:bg-[#00c3ff] hover:text-[#000924] rounded-none`}
                   >
                     {typeof item.name === "string" ? item.name : item.name}
                   </NavigationMenuLink>
