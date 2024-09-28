@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Link } from "react-router-dom";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
-import { Menu } from "lucide-react"; 
+import { Menu } from "lucide-react";
 
 export default function Navbar() {
   const data = [
@@ -28,11 +28,11 @@ export default function Navbar() {
     },
     {
       id: 4,
-     
+
       name: "About",
       path: "/about",
     },
-  
+
     {
       id: 6,
       name: "Login",
@@ -41,7 +41,7 @@ export default function Navbar() {
     {
       id: 7,
       name: "Register",
-      path: "/register",
+      path: "/signup",
     }
   ];
 
@@ -51,7 +51,7 @@ export default function Navbar() {
         <Link to="/">
           <div className="flex items-center">
             <Link to={"/"} >
-            <img src="./navlogo3.png" className="h-14 md:h-16 " alt="" />
+              <img src="./navlogo3.png" className="h-14 md:h-16 " alt="" />
 
             </Link >
           </div>
@@ -64,10 +64,12 @@ export default function Navbar() {
               <NavigationMenuItem key={item.id}>
                 <Link to={item.path}>
                   <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} bg-[#102e47] text-[#42f5f5] text-lg font-bold sm:text-base hover:rounded-full hover:bg-[#00c3ff] hover:text-[#000924] rounded-none`}
+                    className={`${navigationMenuTriggerStyle()} text-lg font-bold sm:text-base hover:rounded-full !text-[#42f5f5] !bg-[#102e47] hover:!bg-[#7fd9f5] hover:!text-[#000924]`}
                   >
-                    {typeof item.name === "string" ? item.name : item.name}
+                    {item.name}
                   </NavigationMenuLink>
+
+
                 </Link>
               </NavigationMenuItem>
             ))}
