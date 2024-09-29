@@ -17,7 +17,7 @@ export const baseApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["auth"],
+  tagTypes: ["auth", "facilities"],
   endpoints: (builder) => ({
     addUsersSignup: builder.mutation({
       query: (data) => ({
@@ -67,7 +67,59 @@ export const baseApi = createApi({
         },
         }),
       invalidatesTags: ["auth"],
-    })
+    }),
+    addFacility: builder.mutation({
+      query: (data) => ({
+        url: "/facilities",
+        method: "POST",
+        body: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+      invalidatesTags: ["facilities"],
+    }),
+
+    // Get all facilities with pagination
+    getAllFacilities: builder.query({
+      query: ({ page = 1, limit = 10 }) => ({
+        url: `/facilities?page=${page}&limit=${limit}`,
+        method: "GET",
+      }),
+      providesTags: ["facilities"],
+    }),
+
+    // Get a single facility by ID
+    getSingleFacility: builder.query({
+      query: (id) => ({
+        url: `/facilities/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["facilities"],
+    }),
+
+    // Update a facility by ID (Admin only)
+    updateFacility: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/facilities/${id}`,
+        method: "PUT",
+        body: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+      invalidatesTags: ["facilities"],
+    }),
+
+    // Soft delete a facility by ID (Admin only)
+    deleteFacility: builder.mutation({
+      query: (id) => ({
+        url: `/facilities/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["facilities"],
+    }),
+
   }),
 });
 
@@ -77,5 +129,10 @@ export const {
   useAddUsersLoginMutation,
   useGetUserProfileQuery,
   useAddUserLogoutMutation,
-  useUpdateUserProfileMutation
+  useUpdateUserProfileMutation,
+  useAddFacilityMutation,
+  useGetAllFacilitiesQuery,
+  useGetSingleFacilityQuery,
+  useUpdateFacilityMutation,
+  useDeleteFacilityMutation,
 } = baseApi;

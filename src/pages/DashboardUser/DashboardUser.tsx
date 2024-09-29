@@ -25,6 +25,7 @@ const DashboardUser = () => {
         name: "",
         phone: "",
         address: "",
+        imageUrl: "", // To hold either the existing image URL or the new one
         imageFile: null as File | null,
     });
 
@@ -40,8 +41,7 @@ const DashboardUser = () => {
         return <div>No user data found!</div>;
     }
 
-    const { data: user } = data;  // Use optional chaining to avoid destructuring errors if `data` is undefined
-    // console.log("user: ", user);
+    const { data: user } = data;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -81,7 +81,7 @@ const DashboardUser = () => {
         e.preventDefault();
         setUploading(true);
     
-        let imageUrl = "";
+        let imageUrl = formData.imageUrl; // Start with the existing image URL
         if (formData.imageFile) {
             imageUrl = await uploadImageToImgbb(formData.imageFile);
             if (!imageUrl) {
@@ -90,18 +90,17 @@ const DashboardUser = () => {
             }
         }
     
-        // Ensure the user ID is passed in the request.
         const updateData = {
             name: formData.name,
             phone: formData.phone,
             address: formData.address,
-            imageUrl: imageUrl , // Use existing image if not updated
-            role: user?.role || "user", // Use existing role if not provided
+            imageUrl, // Use updated or existing image URL
+            role: user?.role || "user",
         };
     
         try {
-            const result = await updateUserProfile({ id: user?._id, data: updateData }).unwrap();  // Pass user ID and form data
-            console.log( result);
+            const result = await updateUserProfile({ id: user?._id, data: updateData }).unwrap();
+            console.log("Update successful: ", result);
             toast.success("Profile updated successfully");
         } catch (err) {
             console.error("Update failed: ", err);
@@ -112,7 +111,7 @@ const DashboardUser = () => {
     };
 
     return (
-        <div className=" px-10 py-40 md:px-0 text-center md:pl-40">
+        <div className="px-10 py-40 md:px-0 text-center md:pl-40">
             <h1 className="font-bold bg-gradient-to-r from-pink-500 to-red-900 text-transparent bg-clip-text text-5xl md:text-7xl">
                 {user?.name}
             </h1>
@@ -122,17 +121,18 @@ const DashboardUser = () => {
 
             <h1 className="text-white">{user?.phone}</h1>
             <h1 className="text-white">{user?.address}</h1>
-            <img src={user?.imageUrl} alt=""  className="w-32 h-32 rounded-full mx-auto"/>
+            <img src={user?.imageUrl} alt="User profile" className="w-32 h-32 rounded-full mx-auto"/>
             
             <Dialog>
                 <DialogTrigger>
                     <Button
                         onClick={() => {
-                            // Pre-fill the form with user data when editing
+                            // Pre-fill the form with user data
                             setFormData({
-                                name: user?.name,
-                                phone: user?.phone,
-                                address: user?.address,
+                                name: user?.name || "",
+                                phone: user?.phone || "",
+                                address: user?.address || "",
+                                imageUrl: user?.imageUrl || "", // Pre-fill the existing image URL
                                 imageFile: null,
                             });
                         }}

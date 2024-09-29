@@ -17,8 +17,9 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const result = await addUserLogout({ }).unwrap(); // Ensure the logout is successful
+      const result = await addUserLogout({ }).unwrap();
 
+      console.log("Logout successful: ", result);
       toast.success("Logout successful");
 
       localStorage.removeItem("token");
@@ -89,7 +90,7 @@ export default function Navbar() {
             <NavigationMenuItem>
               <button
                 onClick={handleLogout}
-                className="text-lg font-bold sm:text-base hover:rounded-full !text-[#42f5f5] !bg-[#102e47] hover:!bg-[#7fd9f5] hover:!text-[#000924]"
+                className="text-lg px-4 py-2 font-bold sm:text-base hover:rounded-full !text-[#42f5f5] !bg-[#102e47] hover:!bg-[#7fd9f5] hover:!text-[#000924]"
               >
                 Logout
               </button>
