@@ -130,7 +130,7 @@ const Registration = () => {
                             <div className="flex flex-col space-y-1.5 ">
                                 <Label htmlFor="phone" className="text-orange-600">Phone Number</Label>
                                 <Input
-                                    type="text" // Changed to text to prevent invalid number input
+                                    type="text" 
                                     id="phone"
                                     placeholder="Your phone number"
                                     value={formData.phone}
