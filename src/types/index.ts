@@ -23,3 +23,18 @@ export type TFacility = {
   createdAt: string;         
   updatedAt: string;        
 };
+export type TBooking = {
+  _id: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  user: TUsers | string;  
+  facility: TFacility | string; 
+  payableAmount: number;
+  isBooked: "confirmed" | "canceled";
+  createdAt: string;
+  updatedAt: string;
+};
+
+
+

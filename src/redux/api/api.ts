@@ -17,7 +17,7 @@ export const baseApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["auth", "facilities"],
+  tagTypes: ["auth", "facilities", "bookings"],
   endpoints: (builder) => ({
     addUsersSignup: builder.mutation({
       query: (data) => ({
@@ -119,11 +119,59 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["facilities"],
     }),
+     // Create a booking
+     addBooking: builder.mutation({
+      query: (data) => ({
+        url: "/bookings",
+        method: "POST",
+        body: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+      invalidatesTags: ["bookings"],
+    }),
+
+    // Check facility availability
+    checkAvailability: builder.query({
+      query: (date) => ({
+        url: `/bookings/check-availability?date=${date}`,
+        method: "GET",
+      }),
+      providesTags: ["bookings"],
+    }),
+
+    // Get all bookings (admin only)
+    getAllBookings: builder.query({
+      query: () => ({
+        url: "/bookings",
+        method: "GET",
+      }),
+      providesTags: ["bookings"],
+    }),
+
+    // Get user-specific bookings
+    getUserBookings: builder.query({
+      query: () => ({
+        url: "/bookings/user",
+        method: "GET",
+      }),
+      providesTags: ["bookings"],
+    }),
+
+    // Cancel a booking
+    cancelBooking: builder.mutation({
+      query: (id) => ({
+        url: `/bookings/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["bookings"],
+    }),
 
   }),
 });
 
-// Exporting the hooks for mutations
+
 export const {
   useAddUsersSignupMutation,
   useAddUsersLoginMutation,
@@ -135,4 +183,9 @@ export const {
   useGetSingleFacilityQuery,
   useUpdateFacilityMutation,
   useDeleteFacilityMutation,
+  useAddBookingMutation,
+  useCheckAvailabilityQuery,
+  useGetAllBookingsQuery,
+  useGetUserBookingsQuery,
+  useCancelBookingMutation,
 } = baseApi;
