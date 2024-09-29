@@ -38,7 +38,7 @@ const Login = () => {
             const token = localStorage.setItem("token", result.token);
             console.log("Login successful: ", result, token);
             toast.success("Login successful");
-            navigate("/userdashboard");
+            navigate(`/userdashboard/${result?.data?._id}`);
         } catch (err) {
             console.error("Login failed: ", err);
             toast.error("Login failed");

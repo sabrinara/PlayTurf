@@ -1,4 +1,3 @@
-
 export type TUsers = {
   _id: string;
   name: string;

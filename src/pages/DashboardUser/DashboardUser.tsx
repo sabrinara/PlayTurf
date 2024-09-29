@@ -13,12 +13,15 @@ import {
     DialogHeader,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { useParams } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const DashboardUser = () => {
-    const { data, isLoading } = useGetUserProfileQuery({});
+    const { id : _id} =useParams();
+    
+    const { data, isLoading } = useGetUserProfileQuery({id: _id});
     const [updateUserProfile] = useUpdateUserProfileMutation();
     const [uploading, setUploading] = useState(false);
     const [formData, setFormData] = useState({

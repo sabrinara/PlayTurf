@@ -8,12 +8,12 @@ export const baseApi = createApi({
     prepareHeaders: (headers) => {
       // Get the token from localStorage
       const token = localStorage.getItem("token");
-      
+
       if (token) {
         // Set the Authorization header with the token
         headers.set("Authorization", `Bearer ${token}`);
       }
-      
+
       return headers;
     },
   }),
@@ -42,12 +42,15 @@ export const baseApi = createApi({
       invalidatesTags: ["auth"],
     }),
     getUserProfile: builder.query({
-      query: () => ({
+      query: (data) => (
+      // console.log({ data }),  
+      {
         method: "GET",
-        url: "/auth/profile",
-      }),
+        url: `/auth/profile/${data?.id}`, 
+      }),      
       providesTags: ["auth"],
     }),
+
     addUserLogout: builder.mutation({
       query: () => ({
         method: "POST",
@@ -56,15 +59,15 @@ export const baseApi = createApi({
       invalidatesTags: ["auth"],
     }),
     updateUserProfile: builder.mutation({
-      query: ({id, data}) => (
-        console.log({id, data}),
+      query: ({ id, data }) => (
+        console.log({ id, data }),
         {
-        method: "PATCH",
-        url: `/auth/${id}`,
-        body: data,
-        headers: {
-          "Content-Type": "application/json",
-        },
+          method: "PATCH",
+          url: `/auth/${id}`,
+          body: data,
+          headers: {
+            "Content-Type": "application/json",
+          },
         }),
       invalidatesTags: ["auth"],
     }),
@@ -119,8 +122,8 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["facilities"],
     }),
-     // Create a booking
-     addBooking: builder.mutation({
+    // Create a booking
+    addBooking: builder.mutation({
       query: (data) => ({
         url: "/bookings",
         method: "POST",
