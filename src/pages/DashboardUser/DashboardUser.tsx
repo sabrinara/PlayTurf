@@ -20,7 +20,6 @@ const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key
 
 const DashboardUser = () => {
     const { id : _id} =useParams();
-    
     const { data, isLoading } = useGetUserProfileQuery({id: _id});
     const [updateUserProfile] = useUpdateUserProfileMutation();
     const [uploading, setUploading] = useState(false);

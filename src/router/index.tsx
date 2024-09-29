@@ -1,5 +1,6 @@
 import MainLayout from "@/components/Layouts/MainLayouts";
 import DashboardUser from "@/pages/DashboardUser/DashboardUser";
+import Facility from "@/pages/Facility/Facility";
 import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login/Login";
 import Registration from "@/pages/Registration/Registration";
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path:"/userdashboard/:id",
         element: <DashboardUser/>
+      },
+      {
+        path: "/faculty",
+        element: <Facility/>,
       },
       {
         path: "*",
