@@ -10,7 +10,7 @@ const Prallex = () => {
 </h1>
 
 
-          {/* Parallax background */}
+     
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center"
                 style={{

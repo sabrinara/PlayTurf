@@ -13,8 +13,9 @@ const Home = () => {
       <Banner />
       <FeaturedFacility />
       <RoadMap />
-      <Testimonials />
       <ExtraSection />
+      <Testimonials />
+     
 
     </div>
   );

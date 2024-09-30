@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+
 // Define the base API for the sports facility booking platform
 export const baseApi = createApi({
   reducerPath: "baseApi",
@@ -48,6 +49,13 @@ export const baseApi = createApi({
         method: "GET",
         url: `/auth/profile/${data?.id}`, 
       }),      
+      providesTags: ["auth"],
+    }),
+    getAllUser : builder.query({
+      query: () => ({
+        method: "GET",
+        url: "/auth/allUsers",
+      }),
       providesTags: ["auth"],
     }),
 
@@ -188,6 +196,7 @@ export const {
   useAddUsersSignupMutation,
   useAddUsersLoginMutation,
   useGetUserProfileQuery,
+  useGetAllUserQuery,
   useAddUserLogoutMutation,
   useUpdateUserProfileMutation,
   useAddFacilityMutation,
