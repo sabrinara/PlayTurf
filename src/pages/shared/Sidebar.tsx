@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoHomeSharp } from "react-icons/io5";
 import { useAddUserLogoutMutation, useGetUserProfileQuery } from "@/redux/api/api";
 import { toast } from "sonner";
+import Loading from "./Loading";
 
 const Sidebar = ({ sidebarToggle, setSidebarToggle }) => {
   const id = localStorage.getItem("id");
@@ -15,7 +16,7 @@ const Sidebar = ({ sidebarToggle, setSidebarToggle }) => {
   if (isLoading) {
     return (
         <div>
-            <h1>Loading...</h1>
+            <Loading />
         </div>
     );
 }

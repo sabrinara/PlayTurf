@@ -1,5 +1,6 @@
 import { useGetUserProfileQuery } from "@/redux/api/api";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 
 const DashboardNavbar = () => {
@@ -8,7 +9,7 @@ const DashboardNavbar = () => {
     if (isLoading) {
         return (
             <div>
-                <h1>Loading...</h1>
+                <Loading />
             </div>
         );
     }

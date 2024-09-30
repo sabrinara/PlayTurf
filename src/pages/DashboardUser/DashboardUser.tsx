@@ -13,6 +13,7 @@ import {
     DialogHeader,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import Loading from "../shared/Loading";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -33,7 +34,7 @@ const DashboardUser = () => {
     if (isLoading) {
         return (
             <div>
-                <h1>Loading...</h1>
+               <Loading/>
             </div>
         );
     }
