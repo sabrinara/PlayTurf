@@ -2,7 +2,6 @@ import { useGetAllFacilitiesQuery } from "@/redux/api/api";
 import Loading from "../shared/Loading";
 import { TFacility } from "@/types";
 import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
 
 
 const FeaturedFacility = () => {

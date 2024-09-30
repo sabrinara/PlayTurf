@@ -26,10 +26,11 @@
 }
 
 .start ul li h4{
-    color: white;
+    color: #42f5f5;
     text-transform: uppercase;
-    font-size: 30px;
-
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 10px;
 }
 
 /* .start ul li .media-body{
@@ -37,7 +38,8 @@
 } */
 
 .start ul li p{
-    color: white;
+    color: #42f5f5;
+    font-size: 15px;
 }
 
 .home .process:after{
@@ -56,53 +58,47 @@
     content: "";
     width: 100%;
     left: 0px;
-    background: white;
   
 }
 
 .icon img{
-    width: 190px;
-    height: 190px;
-    /* margin-left: -60px; */
-    margin-top: -20px;
-    border: white;
+    width: 800px;
+    height: 160px;
+    margin-left: -105px;
+    margin-top: -10px;
     animation: ani 2s ease-in-out infinite;
 
 }
 
-.one img{
-    width: 180px;
-    margin-left: -85px;
+/* .one img{
+    width: 400px;
+    
 }
 
 
 .two img{
-    width: 180px;
-    height: 180px;
-    margin-left: 100px;
-    margin-top: -20px;
+    width: 300px;
+    height: 200px;
+   
 }
 
 .three img{
-    width: 150px;
-    height: 150px;
-    margin-left: 130px;
+    width: 600px;
+
 }
 
 .four img{
-    width: 165px;
-    height: 165px;
-    margin-left: 100px;
+    width: 300px;
+   
+   
 }
 
 
 .five img{
-    width: 175px;
-    height: 175px;
-    margin-left: 130px;
-    margin-top: -20px;
+    width: 1000px;
+ 
 
-}
+} */
 
 @keyframes ani {
     0%{
