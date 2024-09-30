@@ -10,7 +10,6 @@ import {
 import sliderImage1 from "@/assets/banner.jpg";
 import sliderImage2 from "@/assets/banner2.jpg";
 import sliderImage3 from "@/assets/banner3.jpg";
-import React from "react";
 import { Link } from "react-router-dom";
 const Banner = () => {
 

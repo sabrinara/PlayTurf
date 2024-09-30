@@ -5,7 +5,7 @@ const RoadMap = () => {
  
 
   return (
-    <div className="home flex justify-center items-center px-10 md:px-0 text-center md:pl-40">
+    <div className="home flex justify-center items-center px-10 md:px-0 text-center md:pl-40 md:py-28">
       <div className="process start ">
         <ul >
           <li className='one'>

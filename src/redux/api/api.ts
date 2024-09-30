@@ -83,8 +83,17 @@ export const baseApi = createApi({
       invalidatesTags: ["facilities"],
     }),
 
-    // Get all facilities with pagination
     getAllFacilities: builder.query({
+      query: (data) => (
+        console.log( data ),
+      {
+        url: "/facility",
+        method: "GET",
+      }),
+      providesTags: ["facilities"],
+    }),
+    // Get all facilities with pagination
+    getAllFacilitiesPage: builder.query({
       query: ({ page = 1, limit = 10 }) => ({
         url: `/facilities?page=${page}&limit=${limit}`,
         method: "GET",
@@ -183,6 +192,7 @@ export const {
   useUpdateUserProfileMutation,
   useAddFacilityMutation,
   useGetAllFacilitiesQuery,
+  useGetAllFacilitiesPageQuery,
   useGetSingleFacilityQuery,
   useUpdateFacilityMutation,
   useDeleteFacilityMutation,
