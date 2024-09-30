@@ -36,9 +36,10 @@ const Login = () => {
         try {
             const result = await addUsersLogin(loginData).unwrap();
             const token = localStorage.setItem("token", result.token);
-            console.log("Login successful: ", result, token);
+            const id = localStorage.setItem("id", result.data._id);
+            console.log("Login successful: ", result, token, id);
             toast.success("Login successful");
-            navigate(`/userdashboard/${result?.data?._id}`);
+            navigate("/dashboard");
         } catch (err) {
             console.error("Login failed: ", err);
             toast.error("Login failed");

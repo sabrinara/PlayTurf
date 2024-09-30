@@ -13,14 +13,13 @@ import {
     DialogHeader,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { useParams } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const DashboardUser = () => {
-    const { id : _id} =useParams();
-    const { data, isLoading } = useGetUserProfileQuery({id: _id});
+    const id = localStorage.getItem("id");
+    const { data, isLoading } = useGetUserProfileQuery({id});
     const [updateUserProfile] = useUpdateUserProfileMutation();
     const [uploading, setUploading] = useState(false);
     const [formData, setFormData] = useState({
@@ -113,7 +112,7 @@ const DashboardUser = () => {
     };
 
     return (
-        <div className="px-10 py-40 md:px-0 text-center md:pl-40">
+        <div className="px-10 py-20  text-center ">
             <h1 className="font-bold bg-gradient-to-r from-pink-500 to-red-900 text-transparent bg-clip-text text-5xl md:text-7xl">
                 {user?.name}
             </h1>
@@ -129,12 +128,12 @@ const DashboardUser = () => {
                 <DialogTrigger>
                     <Button
                         onClick={() => {
-                            // Pre-fill the form with user data
+                           
                             setFormData({
                                 name: user?.name || "",
                                 phone: user?.phone || "",
                                 address: user?.address || "",
-                                imageUrl: user?.imageUrl || "", // Pre-fill the existing image URL
+                                imageUrl: user?.imageUrl || "", 
                                 imageFile: null,
                             });
                         }}

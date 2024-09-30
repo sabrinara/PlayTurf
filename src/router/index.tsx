@@ -1,3 +1,4 @@
+import DashBoardLayout from "@/components/Layouts/DashBoardLayout";
 import MainLayout from "@/components/Layouts/MainLayouts";
 import DashboardUser from "@/pages/DashboardUser/DashboardUser";
 import Facility from "@/pages/Facility/Facility";
@@ -10,33 +11,40 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <NotFound />,
     children: [
       {
-        index: true,
+        path: "/",
         element: <Home />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/signup",
-        element: <Registration />,
-      },
-      {
-        path:"/userdashboard/:id",
-        element: <DashboardUser/>
-      },
-      {
-        path: "/faculty",
-        element: <Facility/>,
-      },
-      {
-        path: "*",
-        element: <NotFound />,
-      },
+     
+      
     ],
   },
+  {
+    path: "/dashboard",
+    element: <DashBoardLayout />,
+    errorElement: <NotFound />,
+    children: [
+      { 
+        path: "",
+        element: <DashboardUser />,
+      },
+      {
+        path: "/dashboard/facility",
+        element: <Facility />,
+      },
+
+    ]
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Registration />,
+  }
 ]);
 
 export default router;
