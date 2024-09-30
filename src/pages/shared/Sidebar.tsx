@@ -1,13 +1,41 @@
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoHomeSharp } from "react-icons/io5";
+import { useAddUserLogoutMutation, useGetUserProfileQuery } from "@/redux/api/api";
+import { toast } from "sonner";
 
 const Sidebar = ({ sidebarToggle, setSidebarToggle }) => {
+  const id = localStorage.getItem("id");
+  const { data, isLoading } = useGetUserProfileQuery({id});
+  const [addUserLogout] = useAddUserLogoutMutation();
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
+  if (isLoading) {
+    return (
+        <div>
+            <h1>Loading...</h1>
+        </div>
+    );
+}
+const { data: user } = data || {};
 
-  // Function to check the current path and apply the active styles
+const token = localStorage.getItem("token");
+
+const handleLogout = async () => {
+  try {
+    const result = await addUserLogout({}).unwrap(); 
+    console.log("Logout successful: ", result);
+    toast.success("Logout successful");
+    localStorage.removeItem("token"); 
+    localStorage.removeItem("id");
+    navigate("/login");
+  } catch (error) {
+    console.error("Logout failed: ", error);
+  }
+};
+ 
   const getLinkClass = (path) => {
     return location.pathname === path
       ? "bg-[#000924] text-[#42f5f5] rounded-full"
@@ -62,15 +90,63 @@ const Sidebar = ({ sidebarToggle, setSidebarToggle }) => {
               {!open && <span className="hidden md:inline md:ml-1 text-[17px]">Home</span>}
             </Link>
           </li>
-          <li
+          {
+            user?.role === "user" && (
+              <>
+               <li
             className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(
-              "/dashboard/facility"
+              "/dashboard/mybooking"
             )}`}
           >
-            <Link to="/dashboard/facility" className="px-3">
+            <Link to="/dashboard/mybooking" className="px-3">
               <FaArrowLeft className="inline-block w-5 h-5  -mt-1" />
-              {!open && <span className="hidden md:inline md:ml-1 text-[17px]" >Facilities</span>}
+              {!open && <span className="hidden md:inline md:ml-1 text-[17px]" >My Bookings</span>}
             </Link>
+          </li>
+              </>
+            )
+          }
+         {
+          user?.role === "admin" && (
+            <>
+             <li
+            className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(
+              "/dashboard/addadmin"
+            )}`}
+          >
+            <Link to="/dashboard/addadmin" className="px-3">
+              <FaArrowLeft className="inline-block w-5 h-5  -mt-1" />
+              {!open && <span className="hidden md:inline md:ml-1 text-[17px]" >All Users</span>}
+            </Link>
+          </li>
+             <li
+            className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(
+              "/dashboard/facilitytable"
+            )}`}
+          >
+            <Link to="/dashboard/facilitytable" className="px-3">
+              <FaArrowLeft className="inline-block w-5 h-5  -mt-1" />
+              {!open && <span className="hidden md:inline md:ml-1 text-[17px]" >All Facilities</span>}
+            </Link>
+          </li>
+             <li
+            className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(
+              "/dashboard/addfacility"
+            )}`}
+          >
+            <Link to="/dashboard/addfacility" className="px-3">
+              <FaArrowLeft className="inline-block w-5 h-5  -mt-1" />
+              {!open && <span className="hidden md:inline md:ml-1 text-[17px]" >Add Facilities</span>}
+            </Link>
+          </li>
+            </>
+          ) 
+         }
+            <li className="mb-2 rounded hover:shadow py-2">
+           <button onClick={handleLogout} className="px-3">
+              <IoHomeSharp className="inline-block w-5 h-5  -mt-1" />
+              {!open && <span className="hidden md:inline md:ml-1 text-[17px]">Logout</span>}
+            </button>
           </li>
         </ul>
       </div>

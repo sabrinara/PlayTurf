@@ -31,9 +31,9 @@ export default function Navbar() {
 
   const data = [
     { id: 1, name: "Home", path: "/" },
-    { id: 2, name: "Contact", path: "/contact" },
+    { id: 2, name: "Facility", path: "/facility"  },
     { id: 3, name: "About", path: "/about" },
-    { id: 4, name: "More", path: "/more" },
+    { id: 4, name: "Contact", path: "/contact" },
   ];
 
   return (

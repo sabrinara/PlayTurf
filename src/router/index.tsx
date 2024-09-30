@@ -1,5 +1,9 @@
 import DashBoardLayout from "@/components/Layouts/DashBoardLayout";
 import MainLayout from "@/components/Layouts/MainLayouts";
+import AddAdminTable from "@/pages/AdminDashboard/AddAdminTable";
+import AddFacility from "@/pages/AdminDashboard/AddFacility";
+import FacilityTable from "@/pages/AdminDashboard/FacilityTable";
+import Booking from "@/pages/Booking/Booking";
 import DashboardUser from "@/pages/DashboardUser/DashboardUser";
 import Facility from "@/pages/Facility/Facility";
 import Home from "@/pages/Home/Home";
@@ -17,6 +21,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/facility",
+        element: <Facility />,
+      },
      
       
     ],
@@ -30,10 +38,23 @@ const router = createBrowserRouter([
         path: "",
         element: <DashboardUser />,
       },
+     
       {
-        path: "/dashboard/facility",
-        element: <Facility />,
+        path: "/dashboard/addfacility",
+        element: <AddFacility />,
       },
+      {
+        path: "/dashboard/facilitytable",
+        element: <FacilityTable />,
+      },
+      {
+        path: "/dashboard/addadmin",
+        element: <AddAdminTable />,
+      },
+      {
+        path: "/dashboard/mybooking",
+        element: <Booking />,
+      }
 
     ]
   },
