@@ -1,9 +1,11 @@
 import DashBoardLayout from "@/components/Layouts/DashBoardLayout";
 import MainLayout from "@/components/Layouts/MainLayouts";
+import About from "@/pages/About/About";
 import AddAdminTable from "@/pages/AdminDashboard/AddAdminTable";
 import AddFacility from "@/pages/AdminDashboard/AddFacility";
 import FacilityTable from "@/pages/AdminDashboard/FacilityTable";
 import Booking from "@/pages/Booking/Booking";
+import Contact from "@/pages/Contact/Contact";
 import DashboardUser from "@/pages/DashboardUser/DashboardUser";
 import Facility from "@/pages/Facility/Facility";
 import Home from "@/pages/Home/Home";
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
         path: "/facility",
         element: <Facility />,
       },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      }
      
       
     ],
