@@ -30,7 +30,7 @@ const DashboardUser = () => {
         name: "",
         phone: "",
         address: "",
-        imageUrl: "", // To hold either the existing image URL or the new one
+        imageUrl: "", 
         imageFile: null as File | null,
     });
 
@@ -86,7 +86,7 @@ const DashboardUser = () => {
         e.preventDefault();
         setUploading(true);
 
-        let imageUrl = formData.imageUrl; // Start with the existing image URL
+        let imageUrl = formData.imageUrl; 
         if (formData.imageFile) {
             imageUrl = await uploadImageToImgbb(formData.imageFile);
             if (!imageUrl) {
@@ -99,7 +99,7 @@ const DashboardUser = () => {
             name: formData.name,
             phone: formData.phone,
             address: formData.address,
-            imageUrl, // Use updated or existing image URL
+            imageUrl, 
             role: user?.role || "user",
         };
 
@@ -117,7 +117,10 @@ const DashboardUser = () => {
 
     return (
         <div className=" ">
-            <div className="bg-[#102e47] rounded-md flex justify-between items-center px-20">
+            <div className="flex justify-center items-center ">
+                    <img src="../../../public/welcome.jpg" className="w-1/3  h-[230px] " />
+                </div>
+            <div className="bg-[#102e47] rounded-md flex flex-col md:flex-row justify-between items-center px-20">
 
                 <div className="text-[#42f5f5] ml-20 flex flex-col gap-2">
                     <div className="flex justify-between items-center gap-10">
@@ -212,7 +215,7 @@ const DashboardUser = () => {
 
                 </div>
                 <div>
-                    <img src="../../../public/welcome.jpg" className="w-96 " />
+                    <img src={user?.imageUrl} className="w-60 h-60 rounded-full my-20" />
                 </div>
                 <div>
 
