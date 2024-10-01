@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { BsBookmarkCheckFill } from "react-icons/bs";
+import { MdPeopleAlt } from "react-icons/md";
+import { GiField } from "react-icons/gi";
+import { MdPostAdd } from "react-icons/md";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoHomeSharp } from "react-icons/io5";
 import { useAddUserLogoutMutation, useGetUserProfileQuery } from "@/redux/api/api";
@@ -64,7 +69,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
               setOpen(!open);
               setSidebarToggle(!sidebarToggle);
             }}
-            className="hidden md:absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2"
+            className="hidden md:flex absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2"
           />
         ) : (
           <FaArrowLeft
@@ -72,7 +77,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
               setOpen(!open);
               setSidebarToggle(!sidebarToggle);
             }}
-            className="hidden md:absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2 text-xs"
+            className="hidden md:flex absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2 text-xs"
           />
         )}
         <ul
@@ -88,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
           {user?.role === "user" && (
             <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/mybooking")}`}>
               <Link to="/dashboard/mybooking" className="px-3">
-                <FaArrowLeft className="inline-block w-5 h-5 -mt-1" />
+                <BsBookmarkCheckFill className="inline-block w-5 h-5 -mt-1" />
                 {!open && <span className="hidden md:inline md:ml-1 text-[17px]">My Bookings</span>}
               </Link>
             </li>
@@ -97,19 +102,19 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
             <>
               <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/addadmin")}`}>
                 <Link to="/dashboard/addadmin" className="px-3">
-                  <FaArrowLeft className="inline-block w-5 h-5 -mt-1" />
+                <MdPeopleAlt className="inline-block w-5 h-5 -mt-1" />
                   {!open && <span className="hidden md:inline md:ml-1 text-[17px]">All Users</span>}
                 </Link>
               </li>
               <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/facilitytable")}`}>
                 <Link to="/dashboard/facilitytable" className="px-3">
-                  <FaArrowLeft className="inline-block w-5 h-5 -mt-1" />
+                  <GiField className="inline-block w-5 h-5 -mt-1" />
                   {!open && <span className="hidden md:inline md:ml-1 text-[17px]">All Facilities</span>}
                 </Link>
               </li>
               <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/addfacility")}`}>
                 <Link to="/dashboard/addfacility" className="px-3">
-                  <FaArrowLeft className="inline-block w-5 h-5 -mt-1" />
+                  <MdPostAdd className="inline-block w-5 h-5 -mt-1" />
                   {!open && <span className="hidden md:inline md:ml-1 text-[17px]">Add Facilities</span>}
                 </Link>
               </li>
@@ -117,7 +122,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
           )}
           <li className="mb-2 rounded hover:shadow py-2">
             <button onClick={handleLogout} className="px-3">
-              <IoHomeSharp className="inline-block w-5 h-5 -mt-1" />
+              <RiLogoutBoxLine className="inline-block w-5 h-5 -mt-1" />
               {!open && <span className="hidden md:inline md:ml-1 text-[17px]">Logout</span>}
             </button>
           </li>

@@ -70,7 +70,7 @@ const Login = () => {
                                         type="email"
                                         id="email"
                                         placeholder="Your email"
-                                        className="bg-[#102e46]"
+                                        className="bg-[#102e46] text-white"
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         required
@@ -83,7 +83,7 @@ const Login = () => {
                                         type="password"
                                         id="password"
                                         placeholder="Your Password"
-                                        className="bg-[#102e46]"
+                                        className="bg-[#102e46] text-white"
                                         value={formData.password}
                                         onChange={handleInputChange}
                                         required

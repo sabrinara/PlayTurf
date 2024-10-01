@@ -118,7 +118,7 @@ const Registration = () => {
                                             type="text"
                                             id="name"
                                             placeholder="Your name"
-                                            className="bg-[#102e46] "
+                                            className="bg-[#102e46] text-white "
                                             value={formData.name}
                                             onChange={handleInputChange}
                                             required
@@ -130,7 +130,7 @@ const Registration = () => {
                                             type="email"
                                             id="email"
                                             placeholder="Your email"
-                                            className="bg-[#102e46]"
+                                            className="bg-[#102e46] text-white"
                                             value={formData.email}
                                             onChange={handleInputChange}
                                             required
@@ -144,7 +144,7 @@ const Registration = () => {
                                             type="text"
                                             id="phone"
                                             placeholder="Your phone number"
-                                            className="bg-[#102e46]"
+                                            className="bg-[#102e46] text-white"
                                             value={formData.phone}
                                             onChange={handleInputChange}
                                             required
@@ -156,7 +156,7 @@ const Registration = () => {
                                         <Input
                                             type="password"
                                             id="password"
-                                            className="bg-[#102e46]"
+                                            className="bg-[#102e46] text-white"
                                             placeholder="Your Password"
                                             value={formData.password}
                                             onChange={handleInputChange}
@@ -170,7 +170,7 @@ const Registration = () => {
                                         <Input
                                             type="text"
                                             id="address"
-                                            className="bg-[#102e46]"
+                                            className="bg-[#102e46] text-white"
                                             placeholder="Your address"
                                             value={formData.address}
                                             onChange={handleInputChange}
@@ -182,7 +182,7 @@ const Registration = () => {
                                         <Input
                                             type="file"
                                             id="imageFile"
-                                            className="bg-[#102e46]"
+                                            className="bg-[#102e46] text-white"
                                             onChange={handleFileChange}
                                             required
                                         />

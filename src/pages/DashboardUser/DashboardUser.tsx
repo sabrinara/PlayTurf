@@ -1,4 +1,7 @@
 import { useGetUserProfileQuery, useUpdateUserProfileMutation } from "@/redux/api/api";
+import { MdMarkEmailRead } from "react-icons/md";
+import { LuPhoneCall } from "react-icons/lu";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { useState } from "react";
 import { toast } from "sonner";
 import { CiEdit } from "react-icons/ci";
@@ -20,7 +23,7 @@ const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key
 
 const DashboardUser = () => {
     const id = localStorage.getItem("id");
-    const { data, isLoading } = useGetUserProfileQuery({id});
+    const { data, isLoading } = useGetUserProfileQuery({ id });
     const [updateUserProfile] = useUpdateUserProfileMutation();
     const [uploading, setUploading] = useState(false);
     const [formData, setFormData] = useState({
@@ -34,7 +37,7 @@ const DashboardUser = () => {
     if (isLoading) {
         return (
             <div>
-               <Loading/>
+                <Loading />
             </div>
         );
     }
@@ -82,7 +85,7 @@ const DashboardUser = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setUploading(true);
-    
+
         let imageUrl = formData.imageUrl; // Start with the existing image URL
         if (formData.imageFile) {
             imageUrl = await uploadImageToImgbb(formData.imageFile);
@@ -91,7 +94,7 @@ const DashboardUser = () => {
                 return;
             }
         }
-    
+
         const updateData = {
             name: formData.name,
             phone: formData.phone,
@@ -99,7 +102,7 @@ const DashboardUser = () => {
             imageUrl, // Use updated or existing image URL
             role: user?.role || "user",
         };
-    
+
         try {
             const result = await updateUserProfile({ id: user?._id, data: updateData }).unwrap();
             console.log("Update successful: ", result);
@@ -113,89 +116,112 @@ const DashboardUser = () => {
     };
 
     return (
-        <div className="px-10 py-20  text-center ">
-            <h1 className="font-bold bg-gradient-to-r from-pink-500 to-red-900 text-transparent bg-clip-text text-5xl md:text-7xl">
-                {user?.name}
-            </h1>
-            <h1 className="font-bold bg-gradient-to-r from-pink-500 to-red-900 text-transparent bg-clip-text text-5xl md:text-7xl">
-                {user?.email}
-            </h1>
+        <div className=" ">
+            <div className="bg-[#102e47] rounded-md flex justify-between items-center px-20">
 
-            <h1 className="text-white">{user?.phone}</h1>
-            <h1 className="text-white">{user?.address}</h1>
-            <img src={user?.imageUrl} alt="User profile" className="w-32 h-32 rounded-full mx-auto"/>
-            
-            <Dialog>
-                <DialogTrigger>
-                    <Button
-                        onClick={() => {
-                           
-                            setFormData({
-                                name: user?.name || "",
-                                phone: user?.phone || "",
-                                address: user?.address || "",
-                                imageUrl: user?.imageUrl || "", 
-                                imageFile: null,
-                            });
-                        }}
-                        className="bg-black text-orange-500 hover:bg-orange-500 hover:text-black p-2"
-                    >
-                        <CiEdit className="h-10 w-10"/>
-                    </Button>
-                </DialogTrigger>
-                <DialogContent className="bg-black border border-orange-500 text-orange-500">
-                    <DialogHeader>
-                        <h2>Edit Profile</h2>
-                    </DialogHeader>
-                    <form onSubmit={handleSubmit}>
-                        <Label htmlFor="name">Name</Label>
-                        <Input
-                            type="text"
-                            id="name"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            className="w-full mb-2"
-                        />
+                <div className="text-[#42f5f5] ml-20 flex flex-col gap-2">
+                    <div className="flex justify-between items-center gap-10">
+                    < h1 className="text-3xl md:text-5xl font-bold font-serif">Hi {user?.name}!</h1>
+                        <div>
+                            <Dialog>
+                                <DialogTrigger>
+                                    <Button
+                                        onClick={() => {
 
-                        <Label htmlFor="phone">Phone</Label>
-                        <Input
-                            type="text"
-                            id="phone"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            className="w-full mb-2"
-                        />
+                                            setFormData({
+                                                name: user?.name || "",
+                                                phone: user?.phone || "",
+                                                address: user?.address || "",
+                                                imageUrl: user?.imageUrl || "",
+                                                imageFile: null,
+                                            });
+                                        }}
+                                        className="bg-[#000924] text-[#42f5f5] hover:bg-[#42f5f5] hover:text-[#102e47] "
+                                    >
+                                        <CiEdit className="h-8 w-8" title="Edit Now"/>
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent className="bg-[#102e47] border border-[#42f5f5] text-[#42f5f5]">
+                                    <DialogHeader>
+                                        <h2>Edit Profile</h2>
+                                    </DialogHeader>
+                                    <form onSubmit={handleSubmit}>
+                                        <Label htmlFor="name">Name</Label>
+                                        <Input
+                                            type="text"
+                                            id="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
+                                            className="w-full mb-2"
+                                        />
 
-                        <Label htmlFor="address">Address</Label>
-                        <Input
-                            type="text"
-                            id="address"
-                            value={formData.address}
-                            onChange={handleInputChange}
-                            className="w-full mb-2"
-                        />
+                                        <Label htmlFor="phone">Phone</Label>
+                                        <Input
+                                            type="text"
+                                            id="phone"
+                                            value={formData.phone}
+                                            onChange={handleInputChange}
+                                            className="w-full mb-2"
+                                        />
 
-                        <Label htmlFor="image">Image</Label>
-                        <Input
-                            type="file"
-                            id="imageUrl"
-                            onChange={handleFileChange}
-                            className="w-full mb-2"
-                        />
+                                        <Label htmlFor="address">Address</Label>
+                                        <Input
+                                            type="text"
+                                            id="address"
+                                            value={formData.address}
+                                            onChange={handleInputChange}
+                                            className="w-full mb-2"
+                                        />
 
-                        <DialogFooter>
-                            <DialogClose>
-                                <Button
-                                    type="submit"
-                                    className="bg-black text-orange-500 hover:bg-orange-500 hover:text-black"
-                                >
-                                    {uploading ? "Updating..." : "Update Profile"}
-                                </Button>
-                            </DialogClose>
-                        </DialogFooter>
-                    </form>
-                </DialogContent>
-            </Dialog>
+                                        <Label htmlFor="image">Image</Label>
+                                        <Input
+                                            type="file"
+                                            id="imageUrl"
+                                            onChange={handleFileChange}
+                                            className="w-full mb-2"
+                                        />
+
+                                        <DialogFooter>
+                                            <DialogClose>
+                                                <Button
+                                                    type="submit"
+                                                    className="bg-[#102e47] text-[#42f5f5] hover:bg-[#42f5f5] hover:text-black"
+                                                >
+                                                    {uploading ? "Updating..." : "Update Profile"}
+                                                </Button>
+                                            </DialogClose>
+                                        </DialogFooter>
+                                    </form>
+                                </DialogContent>
+                            </Dialog>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <MdMarkEmailRead className="text-2xl" />
+                        <h1 className="text-2xl font-bold">{user?.email}</h1>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <LuPhoneCall className="text-2xl" />
+                        <h1 className="text-2xl font-bold">{user?.phone}</h1>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <FaMapMarkerAlt className="text-2xl" />
+                        <h1 className="text-2xl font-bold">{user?.address}</h1>
+                    </div>
+
+                </div>
+                <div>
+                    <img src="../../../public/welcome.jpg" className="w-96 " />
+                </div>
+                <div>
+
+                </div>
+
+            </div>
+
+
+
         </div>
     );
 };
