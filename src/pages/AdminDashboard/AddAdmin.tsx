@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -79,17 +79,18 @@ const AddAdmin = () => {
             phone: formData.phone,
             address: formData.address,
             image: imageUrl,
-            role: "user",
+            role: "admin",
         };
 
         try {
             const result = await addUsersSignup(signupData).unwrap();
-            console.log("AddAdmin successful: ", result);
+            console.log("Admin Add successful: ", result);
             toast.success("Admin added successful");
-     
+            navigate("/dashboard/allusers");
+
         } catch (err) {
-            console.error("AddAdmin failed: ", err);
-            toast.error("AddAdmin failed");
+            console.error("Admin Add failed: ", err);
+            toast.error("Admin Add failed");
         } finally {
             setUploading(false);
         }
@@ -97,11 +98,12 @@ const AddAdmin = () => {
 
     return (
         <div className="bg-[#000924] h-screen flex flex-col justify-center   pb-10">
-           
+
             <div className=" flex justify-center items-center ">
                 <Card className="w-[350px] md:w-[600px] bg-transparent md:backdrop-blur-md border border-[#000924]">
                     <CardHeader>
-                        <CardTitle className="text-[#42f5f5] text-center text-3xl">AddAdmin</CardTitle>
+                        <CardTitle className="text-[#42f5f5] text-center text-3xl">Add <span className="text-white">Admin</span></CardTitle>
+                        <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2" />
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={handleSubmit}>
@@ -186,11 +188,11 @@ const AddAdmin = () => {
 
                             </div>
                             <CardFooter className="flex flex-col space-y-3 mt-4">
-                                <Button type="submit" className="bg-[#102e46] text-[#42f5f5] hover:bg-[#42f5f5] hover:text-[#102e46] md:px-64 my-2" disabled={uploading}>
+                                <Button type="submit" className="bg-[#102e46] text-[#42f5f5] hover:bg-[#42f5f5] hover:text-[#102e46] md:px-60 my-2" disabled={uploading}>
                                     {uploading ? "Adding Admin..." : "Add Admin"}
                                 </Button>
                             </CardFooter>
-                          
+
                         </form>
                     </CardContent>
                 </Card>
