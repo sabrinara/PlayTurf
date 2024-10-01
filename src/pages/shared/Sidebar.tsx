@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { BsBookmarkCheckFill } from "react-icons/bs";
+import { BsBookmarkCheckFill, BsFillCalendarFill } from "react-icons/bs";
 import { MdPeopleAlt } from "react-icons/md";
 import { GiField } from "react-icons/gi";
 import { MdPostAdd } from "react-icons/md";
@@ -101,12 +101,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
           )}
           {user?.role === "admin" && (
             <>
-              <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/allusers")}`}>
-                <Link to="/dashboard/allusers" className="px-3">
-                <MdPeopleAlt className="inline-block w-5 h-5 -mt-1" />
-                  {!open && <span className="hidden md:inline md:ml-1 text-[17px]">All Users</span>}
-                </Link>
-              </li>
+             
               
               <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/addadmin")}`}>
                 <Link to="/dashboard/addadmin" className="px-3">
@@ -114,19 +109,32 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
                   {!open && <span className="hidden md:inline md:ml-1 text-[17px]">Add Admin</span>}
                 </Link>
               </li>
-              
-              <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/facilitytable")}`}>
-                <Link to="/dashboard/facilitytable" className="px-3">
-                  <GiField className="inline-block w-5 h-5 -mt-1" />
-                  {!open && <span className="hidden md:inline md:ml-1 text-[17px]">All Facilities</span>}
+               <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/allusers")}`}>
+                <Link to="/dashboard/allusers" className="px-3">
+                <MdPeopleAlt className="inline-block w-5 h-5 -mt-1" />
+                  {!open && <span className="hidden md:inline md:ml-1 text-[17px]">All Users</span>}
                 </Link>
-              </li>
+              </li> 
               <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/addfacility")}`}>
                 <Link to="/dashboard/addfacility" className="px-3">
                   <MdPostAdd className="inline-block w-5 h-5 -mt-1" />
                   {!open && <span className="hidden md:inline md:ml-1 text-[17px]">Add Facilities</span>}
                 </Link>
               </li>
+              <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/facilitytable")}`}>
+                <Link to="/dashboard/facilitytable" className="px-3">
+                  <GiField className="inline-block w-5 h-5 -mt-1" />
+                  {!open && <span className="hidden md:inline md:ml-1 text-[17px]">All Facilities</span>}
+                </Link>
+              </li>
+              <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/allbookings")}`}>
+                <Link to="/dashboard/allbookings" className="px-3">
+                  <BsFillCalendarFill className="inline-block w-4 h-4 -mt-1" />
+                  {!open && <span className="hidden md:inline md:ml-1 text-[17px]">All Bookings</span>}
+                </Link>
+              </li>
+             
+             
             </>
           )}
           <li className="mb-2 rounded hover:shadow py-2">

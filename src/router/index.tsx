@@ -4,11 +4,13 @@ import About from "@/pages/About/About";
 import AddAdmin from "@/pages/AdminDashboard/AddAdmin";
 import AddAdminTable from "@/pages/AdminDashboard/AddAdminTable";
 import AddFacility from "@/pages/AdminDashboard/AddFacility";
+import AllBookings from "@/pages/AdminDashboard/AllBookings";
 import FacilityTable from "@/pages/AdminDashboard/FacilityTable";
 import Booking from "@/pages/Booking/Booking";
 import Contact from "@/pages/Contact/Contact";
 import DashboardUser from "@/pages/DashboardUser/DashboardUser";
 import Facility from "@/pages/Facility/Facility";
+import FacilityDetails from "@/pages/Facility/FacilityDetails";
 import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login/Login";
 import Registration from "@/pages/Registration/Registration";
@@ -27,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/facility",
         element: <Facility />,
+      },
+      {
+        path: "/facility/:id",
+        element: <FacilityDetails />,
       },
       {
         path: "/about",
@@ -65,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/addadmin",
         element: <AddAdmin />,
+      },
+      {
+        path: "/dashboard/allbookings",
+        element: <AllBookings />,
       },
       {
         path: "/dashboard/mybooking",

@@ -25,7 +25,7 @@ const AddAdminTable = () => {
     const { data, isLoading } = useGetAllUserQuery({ });
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5; 
+    const itemsPerPage = 7; 
     
    
 
@@ -59,7 +59,7 @@ const AddAdminTable = () => {
                         <TableHead>Email</TableHead>
                         <TableHead className="">Image</TableHead>
                         <TableHead className="">Role</TableHead>
-                        <TableHead className="">Make Admin</TableHead>
+                        <TableHead >User Role</TableHead>
                     </TableRow>
                 </TableHeader>
          
@@ -92,7 +92,6 @@ const AddAdminTable = () => {
             
             </Table>
 
-            {/* Pagination Controls */}
             <div className="my-6 md:my-10 text-[#42f5f5]">
                     <Pagination>
                         <PaginationContent>
