@@ -118,7 +118,7 @@ const DashboardUser = () => {
     return (
         <div className=" ">
             <div className="flex justify-center items-center ">
-                    <img src="../../../public/welcome.jpg" className="w-1/3  h-[230px] " />
+                    <img src="./welcome.jpg" className="w-1/3  h-[230px] " />
                 </div>
             <div className="bg-[#102e47] rounded-md flex flex-col md:flex-row justify-between items-center px-20">
 
@@ -188,7 +188,7 @@ const DashboardUser = () => {
                                             <DialogClose>
                                                 <Button
                                                     type="submit"
-                                                    className="text-[#102e47] bg-[#42f5f5] hover:bg-[#42f5f5] hover:text-black"
+                                                    className="text-[#102e47] bg-[#42f5f5] hover:bg-[#42f5f5]"
                                                 >
                                                     {uploading ? "Updating..." : "Update Profile"}
                                                 </Button>
