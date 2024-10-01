@@ -158,7 +158,7 @@ const Facility = () => {
                             <PaginationItem>
                                 <PaginationNext>
                                     <PaginationLink
-                                        className={`hover:bg-[#000924] hover:text-white ${currentPage === totalPages && "opacity-50 cursor-not-allowed"}`}
+                                        className={`hover:bg-[#000924] hover:text-[#42f5f5] ${currentPage === totalPages && "opacity-50 cursor-not-allowed"}`}
                                         onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
                                        
                                     >
