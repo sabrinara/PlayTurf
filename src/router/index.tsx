@@ -1,6 +1,7 @@
 import DashBoardLayout from "@/components/Layouts/DashBoardLayout";
 import MainLayout from "@/components/Layouts/MainLayouts";
 import About from "@/pages/About/About";
+import AddAdmin from "@/pages/AdminDashboard/AddAdmin";
 import AddAdminTable from "@/pages/AdminDashboard/AddAdminTable";
 import AddFacility from "@/pages/AdminDashboard/AddFacility";
 import FacilityTable from "@/pages/AdminDashboard/FacilityTable";
@@ -58,8 +59,12 @@ const router = createBrowserRouter([
         element: <FacilityTable />,
       },
       {
-        path: "/dashboard/addadmin",
+        path: "/dashboard/allusers",
         element: <AddAdminTable />,
+      },
+      {
+        path: "/dashboard/addadmin",
+        element: <AddAdmin />,
       },
       {
         path: "/dashboard/mybooking",

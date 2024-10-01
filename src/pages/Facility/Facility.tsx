@@ -124,7 +124,7 @@ const Facility = () => {
                 )}
             </div>
 
-            {totalPages > 1 && (
+   
                 <div className="my-6 md:my-10 text-[#42f5f5]">
                     <Pagination>
                         <PaginationContent>
@@ -169,7 +169,7 @@ const Facility = () => {
                         </PaginationContent>
                     </Pagination>
                 </div>
-            )}
+
 
         </div>
     );

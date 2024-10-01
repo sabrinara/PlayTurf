@@ -48,7 +48,7 @@ const Testimonials = () => {
             ) : (
               <img
                 src="https://via.placeholder.com/150"
-                alt="Placeholder"
+                alt="Profile Image"
                 className="rounded-full w-16 h-16 mb-4 mx-auto"
               />
             )}

@@ -11,8 +11,8 @@ const DashBoardLayout = () => {
            <div className="flex flex-col ">
            <DashboardNavbar />
           <div className="flex">
-          <div className={`${sidebarToggle ? "w-20" : "w-2/12"} h-full`}>
-                <Sidebar sidebarToggle={sidebarToggle} setSidebarToggle={setSidebarToggle}/>
+          <div className={`${sidebarToggle ? "w-20" : "w-2/12"} `}>
+                <Sidebar sidebarToggle={sidebarToggle} setSidebarToggle={setSidebarToggle} /> 
             </div>
             <div className={`${sidebarToggle ? "w-10/12 md:w-11/12 px-4 ml-0 md:ml-6 " : "w-9/12 md:w-4/5 ml-2 md:ml-10 "}  relative   `}>
                 <Outlet />

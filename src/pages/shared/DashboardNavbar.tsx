@@ -25,11 +25,14 @@ const DashboardNavbar = () => {
                 </Link>
 
             </div>
+            <Link to="/dashboard">
             <div className="flex items-center gap-4 text-[#3ad3d3]">
-
+         
                 <img src={user?.imageUrl} alt="" className="w-14 h-14 rounded-full border-2 border-[#2dadad]" />
                 <h1 className="hidden md:inline">{user?.name}</h1>
+            
             </div>
+            </Link>
         </div>
     );
 };

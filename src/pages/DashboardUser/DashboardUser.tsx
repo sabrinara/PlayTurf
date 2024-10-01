@@ -152,7 +152,7 @@ const DashboardUser = () => {
                                             id="name"
                                             value={formData.name}
                                             onChange={handleInputChange}
-                                            className="w-full mb-2"
+                                            className="w-full mb-2 bg-[#102e47] text-[#42f5f5]"
                                         />
 
                                         <Label htmlFor="phone">Phone</Label>
@@ -161,7 +161,7 @@ const DashboardUser = () => {
                                             id="phone"
                                             value={formData.phone}
                                             onChange={handleInputChange}
-                                            className="w-full mb-2"
+                                            className="w-full mb-2 bg-[#102e47] text-[#42f5f5]"
                                         />
 
                                         <Label htmlFor="address">Address</Label>
@@ -170,7 +170,7 @@ const DashboardUser = () => {
                                             id="address"
                                             value={formData.address}
                                             onChange={handleInputChange}
-                                            className="w-full mb-2"
+                                            className="w-full mb-2 bg-[#102e47] text-[#42f5f5]"
                                         />
 
                                         <Label htmlFor="image">Image</Label>
@@ -178,14 +178,14 @@ const DashboardUser = () => {
                                             type="file"
                                             id="imageUrl"
                                             onChange={handleFileChange}
-                                            className="w-full mb-2"
+                                            className="w-full mb-2 bg-[#102e47] text-[#42f5f5]"
                                         />
 
                                         <DialogFooter>
                                             <DialogClose>
                                                 <Button
                                                     type="submit"
-                                                    className="bg-[#102e47] text-[#42f5f5] hover:bg-[#42f5f5] hover:text-black"
+                                                    className="text-[#102e47] bg-[#42f5f5] hover:bg-[#42f5f5] hover:text-black"
                                                 >
                                                     {uploading ? "Updating..." : "Update Profile"}
                                                 </Button>

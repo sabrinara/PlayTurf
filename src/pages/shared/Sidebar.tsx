@@ -58,7 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
   };
 
   return (
-    <div className="bg-[#102e46] h-screen border-t border-[#000924] rounded-r-lg">
+    <div className="bg-[#102e46] min-h-screen border-t border-[#000924] rounded-r-lg">
       <div
         className={`${open ? "w-20" : "block w-20 md:w-56"
           } absolute top-20 left-0 px-4 py-2 text-[#42f5f5]`}
@@ -100,12 +100,20 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
           )}
           {user?.role === "admin" && (
             <>
-              <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/addadmin")}`}>
-                <Link to="/dashboard/addadmin" className="px-3">
+              <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/allusers")}`}>
+                <Link to="/dashboard/allusers" className="px-3">
                 <MdPeopleAlt className="inline-block w-5 h-5 -mt-1" />
                   {!open && <span className="hidden md:inline md:ml-1 text-[17px]">All Users</span>}
                 </Link>
               </li>
+              
+              <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/addadmin")}`}>
+                <Link to="/dashboard/addadmin" className="px-3">
+                <MdPeopleAlt className="inline-block w-5 h-5 -mt-1" />
+                  {!open && <span className="hidden md:inline md:ml-1 text-[17px]">Add Admin</span>}
+                </Link>
+              </li>
+              
               <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/facilitytable")}`}>
                 <Link to="/dashboard/facilitytable" className="px-3">
                   <GiField className="inline-block w-5 h-5 -mt-1" />
