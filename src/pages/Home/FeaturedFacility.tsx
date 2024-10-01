@@ -1,21 +1,20 @@
 import { useGetAllFacilitiesQuery } from "@/redux/api/api";
-import Loading from "../shared/Loading";
 import { TFacility } from "@/types";
 import { Link } from "react-router-dom";
 
 
 const FeaturedFacility = () => {
-    const { data, isLoading } = useGetAllFacilitiesQuery({});
+    const { data } = useGetAllFacilitiesQuery({});
 
     console.log(data)
 
-    if (isLoading) {
-        return (
-            <div>
-                <Loading />
-            </div>
-        );
-    }
+    // if (isLoading) {
+    //     return (
+    //         <div>
+    //             <Loading />
+    //         </div>
+    //     );
+    // }
     const { data: facilities } = data || {};
     console.log(facilities);
     return (

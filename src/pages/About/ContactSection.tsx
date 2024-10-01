@@ -8,7 +8,7 @@ const ContactSection = () => {
             <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2" />
             <div className="flex flex-col md:flex-row justify-between items-center text-lg md:gap-10">
                 <div className="none md:flex md:w-1/2 mb-8">
-                    <img src="../../../public/contact.png" alt="Contact Us" className="w-full rounded-lg shadow-lg" />
+                    <img src="./contact.png" alt="Contact Us" className="w-full rounded-lg shadow-lg" />
                 </div>
                 <div className="w-full md:w-1/2 flex flex-col justify-around items-start text-lg gap-4">
                     <div className="flex justify-center items-center gap-2 bg-[#102e47] rounded-md p-6  text-[#42f5f5] ">
