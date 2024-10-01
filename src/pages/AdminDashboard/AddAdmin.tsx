@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link, useNavigate } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
+import {  useNavigate } from "react-router-dom";
+
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
@@ -85,8 +85,8 @@ const AddAdmin = () => {
         try {
             const result = await addUsersSignup(signupData).unwrap();
             console.log("AddAdmin successful: ", result);
-            toast.success("AddAdmin successful");
-            navigate("/login");
+            toast.success("Admin added successful");
+     
         } catch (err) {
             console.error("AddAdmin failed: ", err);
             toast.error("AddAdmin failed");
@@ -187,7 +187,7 @@ const AddAdmin = () => {
                             </div>
                             <CardFooter className="flex flex-col space-y-3 mt-4">
                                 <Button type="submit" className="bg-[#102e46] text-[#42f5f5] hover:bg-[#42f5f5] hover:text-[#102e46] md:px-64 my-2" disabled={uploading}>
-                                    {uploading ? "Submitting..." : "Submit"}
+                                    {uploading ? "Adding Admin..." : "Add Admin"}
                                 </Button>
                             </CardFooter>
                           
