@@ -3,13 +3,13 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 
 const Login = () => {
     const [addUsersLogin] = useAddUsersLoginMutation();
     const [uploading, setUploading] = useState(false);
-   
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -24,14 +24,14 @@ const Login = () => {
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); 
+        e.preventDefault();
 
         const loginData = {
             email: formData.email,
             password: formData.password,
         };
 
-        setUploading(true); 
+        setUploading(true);
 
         try {
             const result = await addUsersLogin(loginData).unwrap();
@@ -44,26 +44,27 @@ const Login = () => {
             console.error("Login failed: ", err);
             toast.error("Login failed");
         } finally {
-            setUploading(false); 
+            setUploading(false);
         }
     };
 
     return (
-        <div className="login-form">
+        <div className="bg-[#000924] flex justify-center items-center h-screen">
             <h2>Login</h2>
             <Card className="w-[350px] md:w-[500px] bg-transparent md:backdrop-blur-md my-10">
                 <CardHeader>
-                    <CardTitle className="text-orange-600 text-center text-3xl">Login</CardTitle>
+                    <CardTitle className="text-[#42f5f5] text-center text-3xl">Login</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit}>
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5 ">
-                                <label htmlFor="email" className="text-orange-600">Email</label>
+                                <label htmlFor="email" className="text-[#42f5f5]">Email</label>
                                 <Input
                                     type="email"
                                     id="email"
                                     placeholder="Your email"
+                                    className="bg-[#102e46]"
                                     value={formData.email}
                                     onChange={handleInputChange}
                                     required
@@ -71,11 +72,12 @@ const Login = () => {
                             </div>
 
                             <div className="flex flex-col space-y-1.5 ">
-                                <label htmlFor="password" className="text-orange-600">Password</label>
+                                <label htmlFor="password" className="text-[#42f5f5]">Password</label>
                                 <Input
                                     type="password"
                                     id="password"
                                     placeholder="Your Password"
+                                    className="bg-[#102e46]"
                                     value={formData.password}
                                     onChange={handleInputChange}
                                     required
@@ -83,9 +85,14 @@ const Login = () => {
                             </div>
                         </div>
                         <CardFooter className="flex flex-col space-y-3 mt-4">
-                            <Button type="submit" className="bg-orange-600 hover:bg-orange-700" disabled={uploading}>
+                            <Button type="submit" className="bg-[#102e46] text-[#42f5f5] hover:bg-[#42f5f5] hover:text-[#102e46]" disabled={uploading}>
                                 {uploading ? "Submitting..." : "Submit"}
                             </Button>
+                        </CardFooter>
+                        <CardFooter className="flex flex-col space-y-1 ">
+                            <h1 className="text-[#42f5f5]">Don't have an account? 
+                                <small className="ml-2 underline"><Link to="/signup">Register</Link></small>
+                                 </h1>
                         </CardFooter>
                     </form>
                 </CardContent>

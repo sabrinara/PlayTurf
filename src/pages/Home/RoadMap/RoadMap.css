@@ -5,12 +5,12 @@
     padding-top: 180px !important;
 }
 .start ul li:nth-child(odd){
-    background: url(images/process-line-3.png) 200px top no-repeat;
+    background: url(../../../../public/images/process-line-3.png) 200px top no-repeat;
     padding-right: 590px;
     padding-top: 100px !important;
 }
 .start ul li:nth-child(even){
-    background: url(images/process-line-2.png) 160px top no-repeat;
+    background: url(../../../../public/images/process-line-2.png) 200px top no-repeat;
     padding-left: 590px;
     padding-top: 100px;
 }

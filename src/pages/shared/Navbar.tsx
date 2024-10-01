@@ -86,7 +86,7 @@ export default function Navbar() {
                 <NavigationMenuItem>
                   <Link to="/login">
                     <NavigationMenuLink
-                      className="text-lg font-bold sm:text-base hover:rounded-full !text-[#42f5f5] !bg-[#102e47] hover:!bg-[#7fd9f5] hover:!text-[#000924]"
+                      className="text-lg font-semibold px-4 py-2  sm:text-base hover:rounded-full !text-[#42f5f5] !bg-[#102e47] hover:!bg-[#7fd9f5] hover:!text-[#000924]"
                     >
                       Login
                     </NavigationMenuLink>
@@ -95,7 +95,7 @@ export default function Navbar() {
                 <NavigationMenuItem>
                   <Link to="/signup">
                     <NavigationMenuLink
-                      className="text-lg font-bold sm:text-base hover:rounded-full !text-[#42f5f5] !bg-[#102e47] hover:!bg-[#7fd9f5] hover:!text-[#000924]"
+                      className="text-lg font-semibold px-4 py-2 sm:text-base hover:rounded-full !text-[#42f5f5] !bg-[#102e47] hover:!bg-[#7fd9f5] hover:!text-[#000924]"
                     >
                       Register
                     </NavigationMenuLink>

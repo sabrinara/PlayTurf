@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -96,53 +96,57 @@ const Registration = () => {
     };
 
     return (
-        <div className="bg-white my-10">
-            <h2>Sign Up</h2>
+        <div className="bg-[#000924] flex justify-center items-center  py-10">
+          
             <Card className="w-[350px] md:w-[500px] bg-transparent md:backdrop-blur-md my-10">
                 <CardHeader>
-                    <CardTitle className="text-orange-600 text-center text-3xl">Registration</CardTitle>
+                    <CardTitle className="text-[#42f5f5] text-center text-3xl">Registration</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit}>
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5 ">
-                                <Label htmlFor="name" className="text-orange-600">Name</Label>
+                                <Label htmlFor="name" className="text-[#42f5f5] mb-1">Name</Label>
                                 <Input
                                     type="text"
                                     id="name"
                                     placeholder="Your name"
+                                    className="bg-[#102e46] "
                                     value={formData.name}
                                     onChange={handleInputChange}
                                     required
                                 />
                             </div>
                             <div className="flex flex-col space-y-1.5 ">
-                                <Label htmlFor="email" className="text-orange-600">Email</Label>
+                                <Label htmlFor="email" className="text-[#42f5f5] mb-1">Email</Label>
                                 <Input
                                     type="email"
                                     id="email"
                                     placeholder="Your email"
+                                    className="bg-[#102e46]"
                                     value={formData.email}
                                     onChange={handleInputChange}
                                     required
                                 />
                             </div>
                             <div className="flex flex-col space-y-1.5 ">
-                                <Label htmlFor="phone" className="text-orange-600">Phone Number</Label>
+                                <Label htmlFor="phone" className="text-[#42f5f5] mb-1">Phone Number</Label>
                                 <Input
                                     type="text" 
                                     id="phone"
                                     placeholder="Your phone number"
+                                    className="bg-[#102e46]"
                                     value={formData.phone}
                                     onChange={handleInputChange}
                                     required
                                 />
                             </div>
                             <div className="flex flex-col space-y-1.5 ">
-                                <Label htmlFor="password" className="text-orange-600">Password</Label>
+                                <Label htmlFor="password" className="text-[#42f5f5] mb-1">Password</Label>
                                 <Input
                                     type="password"
                                     id="password"
+                                    className="bg-[#102e46]"
                                     placeholder="Your Password"
                                     value={formData.password}
                                     onChange={handleInputChange}
@@ -150,10 +154,11 @@ const Registration = () => {
                                 />
                             </div>
                             <div className="flex flex-col space-y-1.5 ">
-                                <Label htmlFor="address" className="text-orange-600">Address</Label>
+                                <Label htmlFor="address" className="text-[#42f5f5] mb-1">Address</Label>
                                 <Input
                                     type="text"
                                     id="address"
+                                    className="bg-[#102e46]"
                                     placeholder="Your address"
                                     value={formData.address}
                                     onChange={handleInputChange}
@@ -161,19 +166,25 @@ const Registration = () => {
                                 />
                             </div>
                             <div className="flex flex-col space-y-1.5 ">
-                                <Label htmlFor="imageFile" className="text-orange-600">Profile Image</Label>
+                                <Label htmlFor="imageFile" className="text-[#42f5f5] mb-1">Profile Image</Label>
                                 <Input
                                     type="file"
                                     id="imageFile"
+                                    className="bg-[#102e46]"
                                     onChange={handleFileChange}
                                     required
                                 />
                             </div>
                         </div>
                         <CardFooter className="flex flex-col space-y-3 mt-4">
-                            <Button type="submit" className="bg-orange-600 hover:bg-orange-700" disabled={uploading}>
+                            <Button type="submit" className="bg-[#102e46] text-[#42f5f5] hover:bg-[#42f5f5] hover:text-[#102e46]" disabled={uploading}>
                                 {uploading ? "Submitting..." : "Submit"}
                             </Button>
+                        </CardFooter>
+                        <CardFooter className="flex flex-col space-y-1 ">
+                            <h1 className="text-[#42f5f5]">Have an account? 
+                                <small className="ml-2 underline"><Link to="/login">Login</Link></small>
+                                 </h1>
                         </CardFooter>
                     </form>
                 </CardContent>
