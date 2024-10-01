@@ -50,7 +50,7 @@ const Login = () => {
 
     return (
         <div className="bg-[#000924] flex justify-center items-center h-screen">
-            <h2>Login</h2>
+         
             <Card className="w-[350px] md:w-[500px] bg-transparent md:backdrop-blur-md my-10">
                 <CardHeader>
                     <CardTitle className="text-[#42f5f5] text-center text-3xl">Login</CardTitle>

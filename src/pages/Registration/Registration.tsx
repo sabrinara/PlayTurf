@@ -96,15 +96,16 @@ const Registration = () => {
     };
 
     return (
-        <div className="bg-[#000924] flex justify-center items-center  py-10">
+        <div className="bg-[#000924] h-screen flex justify-center items-center  py-10">
           
-            <Card className="w-[350px] md:w-[500px] bg-transparent md:backdrop-blur-md my-10">
+            <Card className="w-[350px] md:w-[600px] bg-transparent md:backdrop-blur-md">
                 <CardHeader>
                     <CardTitle className="text-[#42f5f5] text-center text-3xl">Registration</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit}>
                         <div className="grid w-full items-center gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                             <div className="flex flex-col space-y-1.5 ">
                                 <Label htmlFor="name" className="text-[#42f5f5] mb-1">Name</Label>
                                 <Input
@@ -129,6 +130,8 @@ const Registration = () => {
                                     required
                                 />
                             </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
                             <div className="flex flex-col space-y-1.5 ">
                                 <Label htmlFor="phone" className="text-[#42f5f5] mb-1">Phone Number</Label>
                                 <Input
@@ -141,7 +144,8 @@ const Registration = () => {
                                     required
                                 />
                             </div>
-                            <div className="flex flex-col space-y-1.5 ">
+                          
+                          <div className="flex flex-col space-y-1.5 ">
                                 <Label htmlFor="password" className="text-[#42f5f5] mb-1">Password</Label>
                                 <Input
                                     type="password"
@@ -153,6 +157,8 @@ const Registration = () => {
                                     required
                                 />
                             </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
                             <div className="flex flex-col space-y-1.5 ">
                                 <Label htmlFor="address" className="text-[#42f5f5] mb-1">Address</Label>
                                 <Input
@@ -175,9 +181,11 @@ const Registration = () => {
                                     required
                                 />
                             </div>
+                          </div>
+                          
                         </div>
                         <CardFooter className="flex flex-col space-y-3 mt-4">
-                            <Button type="submit" className="bg-[#102e46] text-[#42f5f5] hover:bg-[#42f5f5] hover:text-[#102e46]" disabled={uploading}>
+                            <Button type="submit" className="bg-[#102e46] text-[#42f5f5] hover:bg-[#42f5f5] hover:text-[#102e46] md:px-64 my-2" disabled={uploading}>
                                 {uploading ? "Submitting..." : "Submit"}
                             </Button>
                         </CardFooter>
