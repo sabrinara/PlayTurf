@@ -5,6 +5,7 @@ import { MdPeopleAlt } from "react-icons/md";
 import { GiField } from "react-icons/gi";
 import { MdPostAdd } from "react-icons/md";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { TiUserAdd } from "react-icons/ti";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoHomeSharp } from "react-icons/io5";
 import { useAddUserLogoutMutation, useGetUserProfileQuery } from "@/redux/api/api";
@@ -109,7 +110,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
               
               <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/addadmin")}`}>
                 <Link to="/dashboard/addadmin" className="px-3">
-                <MdPeopleAlt className="inline-block w-5 h-5 -mt-1" />
+                <TiUserAdd className="inline-block w-5 h-5 -mt-1" />
                   {!open && <span className="hidden md:inline md:ml-1 text-[17px]">Add Admin</span>}
                 </Link>
               </li>
