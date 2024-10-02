@@ -2,6 +2,7 @@
 import Loading from "@/pages/shared/Loading";
 import { useGetUserProfileQuery } from "@/redux/api/api";
 import { Navigate, useLocation } from "react-router-dom";
+import { toast } from "sonner";
 
 
 const PrivateRouters = ({  children }) => {
@@ -23,7 +24,11 @@ const PrivateRouters = ({  children }) => {
     if (user) {
         return children;
     }
-    return <Navigate to="/login" state={location.pathname} ></Navigate>
+    return(
+        toast.error("Please login first"),
+        <Navigate to="/login" state={location.pathname} ></Navigate>
+
+    )
 
 };
 

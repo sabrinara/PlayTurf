@@ -18,7 +18,7 @@ export const baseApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["auth", "facilities", "bookings"],
+  tagTypes: ["auth", "facility", "bookings"],
   endpoints: (builder) => ({
     addUsersSignup: builder.mutation({
       query: (data) => ({
@@ -44,14 +44,14 @@ export const baseApi = createApi({
     }),
     getUserProfile: builder.query({
       query: (data) => (
-      // console.log({ data }),  
-      {
-        method: "GET",
-        url: `/auth/profile/${data?.id}`, 
-      }),      
+        // console.log({ data }),  
+        {
+          method: "GET",
+          url: `/auth/profile/${data?.id}`,
+        }),
       providesTags: ["auth"],
     }),
-    getAllUser : builder.query({
+    getAllUser: builder.query({
       query: () => ({
         method: "GET",
         url: "/auth/allUsers",
@@ -88,39 +88,39 @@ export const baseApi = createApi({
           "Content-Type": "application/json",
         },
       }),
-      invalidatesTags: ["facilities"],
+      invalidatesTags: ["facility"],
     }),
 
     getAllFacilities: builder.query({
       query: (data) => (
-        console.log( data ),
-      {
+        console.log(data),
+        {
+          url: "/facility",
+          method: "GET",
+        }),
+      providesTags: ["facility"],
+    }),
+
+    getAllFacilitiesPage: builder.query({
+      query: () => ({
         url: "/facility",
         method: "GET",
       }),
-      providesTags: ["facilities"],
-    }),
-    // Get all facilities with pagination
-    getAllFacilitiesPage: builder.query({
-      query: ({ page = 1, limit = 10 }) => ({
-        url: `/facilities?page=${page}&limit=${limit}`,
-        method: "GET",
-      }),
-      providesTags: ["facilities"],
+      providesTags: ["facility"],
     }),
 
-    // Get a single facility by ID
+  
     getSingleFacility: builder.query({
-      query: ({id }) => (
-console.log({ id}),
+      query: ({ id }) => (
+        console.log({ id }),
         {
-        url: `/facility/${id}`,
-        method: "GET",
-      }),
-      providesTags: ["facilities"],
+          url: `/facility/${id}`,
+          method: "GET",
+        }),
+      providesTags: ["facility"],
     }),
 
-    // Update a facility by ID (Admin only)
+   
     updateFacility: builder.mutation({
       query: ({ id, data }) => ({
         url: `/facility/${id}`,
@@ -130,7 +130,7 @@ console.log({ id}),
           "Content-Type": "application/json",
         },
       }),
-      invalidatesTags: ["facilities"],
+      invalidatesTags: ["facility"],
     }),
 
     // Soft delete a facility by ID (Admin only)
@@ -139,7 +139,7 @@ console.log({ id}),
         url: `/facilities/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["facilities"],
+      invalidatesTags: ["facility"],
     }),
     // Create a booking
     addBooking: builder.mutation({

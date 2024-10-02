@@ -51,7 +51,8 @@ const AllBookings = () => {
 
     return (
         <div className="py-16 text-white">
-            <h1 className="text-3xl font-bold text-center text-[#42f5f5]">All Bookings</h1>
+                   <h1 className="text-[#42f5f5] text-center text-3xl">All <span className="text-white">Bookings</span></h1>
+                   <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2" />
 
             <Table className="mt-8">
                 <TableHeader className="hover:bg-[#102e47] text-[#42f5f5]">
