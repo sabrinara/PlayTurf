@@ -111,8 +111,10 @@ export const baseApi = createApi({
 
     // Get a single facility by ID
     getSingleFacility: builder.query({
-      query: (id) => ({
-        url: `/facilities/${id}`,
+      query: ({id }) => (
+console.log({ id}),
+        {
+        url: `/facility/${id}`,
         method: "GET",
       }),
       providesTags: ["facilities"],
@@ -121,7 +123,7 @@ export const baseApi = createApi({
     // Update a facility by ID (Admin only)
     updateFacility: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/facilities/${id}`,
+        url: `/facility/${id}`,
         method: "PUT",
         body: data,
         headers: {
