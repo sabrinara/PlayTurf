@@ -15,7 +15,7 @@ export type TFacility = {
   _id: string;               
   name: string;            
   description: string;       
-  imageUrl?: string;         
+  imageUrl: string;         
   pricePerHour: number;      
   location: string;          
   isDeleted?: boolean;       

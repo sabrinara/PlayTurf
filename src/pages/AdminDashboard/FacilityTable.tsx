@@ -16,7 +16,6 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
-
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -33,9 +32,8 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { CiEdit } from "react-icons/ci";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { VscOpenPreview } from "react-icons/vsc";
-
 import { toast } from "sonner";
 import { TFacility } from "@/types";
 
@@ -44,20 +42,21 @@ const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key
 
 const FacilityTable = () => {
     const { data, isLoading } = useGetAllFacilitiesQuery({});
-
     const [updateFacility] = useUpdateFacilityMutation();
     const [deleteFacility] = useDeleteFacilityMutation();
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
+    const itemsPerPage = 2;
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [sortByPrice, setSortByPrice] = useState<boolean>(false);
+    const [editFacilityId, setEditFacilityId] = useState<string>("");
     const [editFormData, setEditFormData] = useState({
-        _id: "",
+
         name: "",
         description: "",
         pricePerHour: "",
         location: "",
-        imageUrl: "" || null as File | null,
+        imageUrl: "",
+        imageFile: null as File | null,
     });
     const [uploading, setUploading] = useState(false);
 
@@ -81,7 +80,7 @@ const FacilityTable = () => {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditFormData({
             ...editFormData,
-            imageUrl: e.target.files ? e.target.files[0] : "" || null as File | null,
+            imageFile: e.target.files ? e.target.files[0] : "" || (null as File | null),
         });
     };
 
@@ -105,55 +104,45 @@ const FacilityTable = () => {
         }
     };
 
-    const handleUpdateFacility = async () => {
+    const handleUpdateFacility = async (e: React.FormEvent) => {
+        e.preventDefault();
         setUploading(true);
 
-        let imageUrl = "";
-        if (editFormData.imageUrl) {
-            imageUrl = await uploadImageToImgbb(editFormData.imageUrl as File);
-        }
-
-        if (!imageUrl && editFormData.imageUrl) {
-            setUploading(false);
-            return;
+        let imageUrl = editFormData.imageUrl;
+        if (editFormData.imageFile) {
+            imageUrl = await uploadImageToImgbb(editFormData.imageFile);
+            if (!imageUrl) {
+                setUploading(false);
+                return;
+            }
         }
 
         const updateData = {
-            _id: editFormData._id,
             name: editFormData.name,
             description: editFormData.description,
-            pricePerHour: editFormData.pricePerHour,
+            pricePerHour: Number(editFormData.pricePerHour),
             location: editFormData.location,
-            imageUrl: imageUrl || editFormData.imageUrl,
+            imageUrl,
         };
 
         try {
-            const result = await updateFacility({ id: editFormData._id, data: updateData }).unwrap();
-            console.log("Update successful: ", result);
+            await updateFacility({ id: editFacilityId, data: updateData }).unwrap();
             toast.success("Facility updated successfully");
-            setEditFormData({
-                _id: "",
-                name: "",
-                description: "",
-                pricePerHour: "",
-                location: "",
-                imageUrl: "" || null as File | null,
-            });
-            setUploading(false);
+
         } catch (err) {
-            console.error("Update failed: ", err);
             toast.error("Update failed");
+
+        } finally {
             setUploading(false);
         }
     };
 
+
     const handleDeleteFacility = async (id: string) => {
         try {
-            const result = await deleteFacility(id).unwrap();
-            console.log("Delete successful: ", result);
+            await deleteFacility(id).unwrap();
             toast.success("Facility deleted successfully");
         } catch (err) {
-            console.error("Delete failed: ", err);
             toast.error("Delete failed");
         }
     };
@@ -175,7 +164,7 @@ const FacilityTable = () => {
         currentPage * itemsPerPage
     );
 
-    const handlePageChange = (page: number) => {
+    const handleClick = (page: number) => {
         setCurrentPage(page);
     };
 
@@ -191,28 +180,37 @@ const FacilityTable = () => {
 
     return (
         <div className="pt-10">
-            <h1 className="text-[#42f5f5] text-center text-3xl">All <span className="text-white">Facilities</span></h1>
+            <h1 className="text-[#42f5f5] text-center text-3xl">
+                All <span className="text-white">Facilities</span>
+            </h1>
             <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2" />
 
-            <div className="flex relative">
-                <input
-                    type="text"
-                    placeholder="Search by name, description, or location..."
-                    value={searchTerm}
-                    onChange={handleSearch}
-                    className="border border-[#42f5f5] px-3 py-2 rounded-none pl-10"
-                />
-                <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2" />
-                <div className="flex my-2 md:my-10 space-x-4 ml-4">
-                    <Button onClick={toggleSortByPrice} className="border border-[#42f5f5] px-3 py-2 rounded-none">
-                        {sortByPrice ? "Price: Low to High" : "Price: High to Low"}
-                    </Button>
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:mb-10">
+
+                <div className="flex relative bg-[#000924] hover:bg-[#102e46] hover:text-white">
+                    <input
+                        type="text"
+                        placeholder="   Search by name"
+                        value={searchTerm}
+                        onChange={handleSearch}
+                        className="border border-[#42f5f5] px-2 md:px-6 py-2 rounded-full bg-[#102e46] pl-10"
+                    />
+                    <FaSearch className="absolute left-3  top-1/2 transform -translate-y-1/2 text-[#42f5f5]" />
                 </div>
+
+
+                <button
+                    onClick={toggleSortByPrice}
+                    className={`border border-[#42f5f5] bg-[#102e46] text-[#42f5f5] px-6 py-2 rounded-full font-semibold ${sortByPrice ? "bg-[#42f5f5] text-white" : ""
+                        }`}
+                >
+                    Sort by Price Per Hour
+                </button>
             </div>
 
-            <Table>
+            <Table className="bg-[#000924]">
                 <TableHeader>
-                    <TableRow>
+                    < TableRow className="hover:bg-[#102e46]">
                         <TableHead className="w-[100px]">#</TableHead>
                         <TableHead>Title</TableHead>
                         <TableHead>Location</TableHead>
@@ -225,8 +223,10 @@ const FacilityTable = () => {
                 </TableHeader>
                 <TableBody>
                     {paginatedData.map((facility: TFacility, index) => (
-                        <TableRow key={facility._id} className={`${index % 2 === 0 ? "bg-green-50" : "bg-white"}`}>
-                            <TableCell className="font-medium">{(currentPage - 1) * itemsPerPage + index + 1}</TableCell>
+                        <TableRow key={facility._id} className={`hover:bg-[#102e46] text-[#42f5f5] ${index % 2 === 0 ? "bg-[#000924] border-[#000924]" : " border-[#000924]"}`}>
+                            <TableCell className="font-medium">
+                                {(currentPage - 1) * itemsPerPage + index + 1}
+                            </TableCell>
                             <TableCell>{facility.name}</TableCell>
                             <TableCell>{facility.location}</TableCell>
                             <TableCell>
@@ -234,7 +234,7 @@ const FacilityTable = () => {
                                     <img
                                         src={facility.imageUrl}
                                         alt={facility.name}
-                                        className="w-24 h-24 object-cover"
+                                        className="w-20 h-20 object-cover"
                                     />
                                 </Link>
                             </TableCell>
@@ -245,120 +245,151 @@ const FacilityTable = () => {
                             </TableCell>
                             <TableCell>
                                 <button onClick={() => handleDeleteFacility(facility._id)}>
-                                    <AiFillDelete className="text-red-600 text-xl" />
+                                    <AiFillDelete className="text-[#42f5f5] text-xl" />
                                 </button>
                             </TableCell>
                             <TableCell>
-                                <Dialog>
+                                <Dialog >
                                     <DialogTrigger asChild>
-                                        <button
-                                            onClick={() => setEditFormData(facility as TFacility)}
-                                            className="text-blue-500 text-xl"
-                                        >
-                                            <CiEdit />
+                                        <button onClick={() => {
+                                            setEditFacilityId(facility._id);
+                                            setEditFormData({
+                                                name: facility.name,
+                                                description: facility.description,
+                                                pricePerHour: facility.pricePerHour.toString(),
+                                                location: facility.location,
+                                                imageUrl: facility?.imageUrl || "",
+                                                imageFile: null,
+
+
+                                            });
+                                        }}>
+                                            <CiEdit className="text-lg text-[#42f5f5]" />
                                         </button>
+
                                     </DialogTrigger>
-                                    <DialogContent className="bg-green-50 text-center">
+                                    <DialogContent className="sm:max-w-[425px] bg-[#000924] text-[#42f5f5]">
                                         <DialogHeader>
-                                            <DialogTitle>Edit Facility</DialogTitle>
-                                            <DialogClose />
+                                            <DialogTitle className="text-[#42f5f5] text-center text-2xl">Edit <span className="text-white">Facility</span></DialogTitle>
+
+                                            <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2" />
                                         </DialogHeader>
-                                        <div className="space-y-4">
-                                            <div>
-                                                <Label htmlFor="name">Facility Name</Label>
-                                                <Input
-                                                    type="text"
-                                                    id="name"
-                                                    value={editFormData.name}
-                                                    onChange={handleEditInputChange}
-                                                    className="border-[#42f5f5]"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label htmlFor="description">Description</Label>
-                                                <Input
-                                                    type="text"
-                                                    id="description"
-                                                    value={editFormData.description}
-                                                    onChange={handleEditInputChange}
-                                                    className="border-[#42f5f5]"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label htmlFor="pricePerHour">Price per Hour</Label>
-                                                <Input
-                                                    type="number"
-                                                    id="pricePerHour"
-                                                    value={editFormData.pricePerHour}
-                                                    onChange={handleEditInputChange}
-                                                    className="border-[#42f5f5]"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label htmlFor="location">Location</Label>
-                                                <Input
-                                                    type="text"
-                                                    id="location"
-                                                    value={editFormData.location}
-                                                    onChange={handleEditInputChange}
-                                                    className="border-[#42f5f5]"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label htmlFor="image">Facility Image</Label>
-                                                <Input
-                                                    type="file"
-                                                    id="image"
-                                                    accept="image/*"
-                                                    onChange={handleFileChange}
-                                                    className="border-[#42f5f5]"
-                                                />
-                                            </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="name">Name</Label>
+                                            <Input
+                                                id="name"
+                                                placeholder="Facility Name"
+                                                value={editFormData.name}
+                                                onChange={handleEditInputChange}
+                                                className="bg-[#102e46]"
+                                            />
                                         </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="description">Description</Label>
+                                            <Input
+                                                id="description"
+                                                placeholder="Description"
+                                                value={editFormData.description}
+                                                onChange={handleEditInputChange}
+                                                className="bg-[#102e46]"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="location">Location</Label>
+                                            <Input
+                                                id="location"
+                                                placeholder="Location"
+                                                value={editFormData.location}
+                                                onChange={handleEditInputChange}
+                                                className="bg-[#102e46]"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="pricePerHour">Price Per Hour</Label>
+                                            <Input
+                                                id="pricePerHour"
+                                                type="number"
+                                                placeholder="Price Per Hour"
+                                                value={editFormData.pricePerHour}
+                                                onChange={handleEditInputChange}
+                                                className="bg-[#102e46]"
+                                            />
+                                        </div>
+                                        <div>
+                                            <Label htmlFor="imageUrl">Image</Label>
+                                            <Input
+                                                id="imageUrl"
+                                                type="file"
+                                                onChange={handleFileChange}
+                                                className="bg-[#102e46]"
+                                            />
+                                        </div>
+
                                         <DialogFooter>
                                             <Button
-                                                onClick={handleUpdateFacility}
                                                 disabled={uploading}
-                                                className="mt-4 bg-[#42f5f5] text-black"
+                                                onClick={handleUpdateFacility}
+                                                className="text-[#102e47] bg-[#42f5f5] hover:bg-[#42f5f5]"
                                             >
-                                                {uploading ? "Updating..." : "Update"}
+                                                {uploading ? "Updating..." : "Update Facility"}
                                             </Button>
                                         </DialogFooter>
                                     </DialogContent>
                                 </Dialog>
                             </TableCell>
-                            <TableCell className="text-right">{facility.pricePerHour}</TableCell>
+                            <TableCell className="text-right">
+                                ${facility.pricePerHour.toFixed(2)}
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
 
-            <Pagination className="mt-4 flex justify-end">
-                <PaginationContent>
-                    <PaginationPrevious
-                        onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}
-                    >
-                        Previous
-                    </PaginationPrevious>
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                        <PaginationItem key={page}>
-                            <PaginationLink
-                                active={page === currentPage}
-                                onClick={() => handlePageChange(page)}
-                            >
-                                {page}
-                            </PaginationLink>
+            <div className="my-6 md:my-10 text-[#42f5f5]">
+                <Pagination>
+                    <PaginationContent>
+
+                        <PaginationItem>
+                            <PaginationPrevious>
+                                <PaginationLink
+                                    className={`hover:bg-[#102e46] hover:text-[#42f5f5] ${currentPage === 1 && "opacity-50 cursor-not-allowed"}`}
+                                    onClick={() => currentPage > 1 && handleClick(currentPage - 1)}
+
+                                >
+                                    Previous
+                                </PaginationLink>
+                            </PaginationPrevious>
                         </PaginationItem>
-                    ))}
-                    <PaginationNext
-                        onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                    >
-                        Next
-                    </PaginationNext>
-                </PaginationContent>
-            </Pagination>
+
+
+                        {[...Array(totalPages)].map((_, index) => (
+                            <PaginationItem key={index}>
+                                <PaginationLink
+                                    isActive={currentPage === index + 1}
+                                    onClick={() => handleClick(index + 1)}
+                                    className={`hover:bg-[#42f5f5] hover:text-[#102e46] ${currentPage === index + 1 ? "bg-[#42f5f5] text-[#102e46]" : ""}`}
+                                >
+                                    {index + 1}
+                                </PaginationLink>
+                            </PaginationItem>
+                        ))}
+
+
+                        <PaginationItem>
+                            <PaginationNext>
+                                <PaginationLink
+                                    className={`hover:bg-[#000924] hover:text-[#42f5f5] ${currentPage === totalPages && "opacity-50 cursor-not-allowed"}`}
+                                    onClick={() => currentPage < totalPages && handleClick(currentPage + 1)}
+
+                                >
+                                    Next
+                                </PaginationLink>
+                            </PaginationNext>
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+            </div>
         </div>
     );
 };

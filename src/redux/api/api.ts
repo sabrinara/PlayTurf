@@ -136,7 +136,7 @@ export const baseApi = createApi({
     // Soft delete a facility by ID (Admin only)
     deleteFacility: builder.mutation({
       query: (id) => ({
-        url: `/facilities/${id}`,
+        url: `/facility/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["facility"],
