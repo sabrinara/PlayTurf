@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { BsBookmarkCheckFill, BsFillCalendarFill } from "react-icons/bs";
+import {  BsFillCalendarFill } from "react-icons/bs";
 import { MdPeopleAlt } from "react-icons/md";
 import { GiField } from "react-icons/gi";
 import { MdPostAdd } from "react-icons/md";
@@ -8,6 +8,7 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import { TiUserAdd } from "react-icons/ti";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoHomeSharp } from "react-icons/io5";
+import { MdBookmarkAdd, MdBookmarkAdded } from "react-icons/md";
 import { useAddUserLogoutMutation, useGetUserProfileQuery } from "@/redux/api/api";
 import { toast } from "sonner";
 
@@ -92,12 +93,20 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarToggle, setSidebarToggle }) =>
             </Link>
           </li>
           {user?.role === "user" && (
+           <>
+            <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/booking")}`}>
+              <Link to="/dashboard/booking" className="px-3">
+                <MdBookmarkAdd className="inline-block w-5 h-5 -mt-1" />
+                {!open && <span className="hidden md:inline md:ml-1 text-[17px]">Book Facility</span>}
+              </Link>
+            </li>
             <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/mybooking")}`}>
               <Link to="/dashboard/mybooking" className="px-3">
-                <BsBookmarkCheckFill className="inline-block w-5 h-5 -mt-1" />
+                <MdBookmarkAdded className="inline-block w-5 h-5 -mt-1" />
                 {!open && <span className="hidden md:inline md:ml-1 text-[17px]">My Bookings</span>}
               </Link>
             </li>
+           </>
           )}
           {user?.role === "admin" && (
             <>
