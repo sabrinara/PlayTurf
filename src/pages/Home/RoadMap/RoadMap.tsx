@@ -2,8 +2,8 @@ import './RoadMap.css';
 
 const RoadMap = () => {
   return (
-    <div className="my-10 md:mt-[30rem]">
-      <h2 className="text-2xl md:text-4xl font-bold my-4 text-center text-[#42f5f5]">
+    <div className="my-10 mt-[84rem] md:mt-[30rem]">
+      <h2 className="text-3xl md:text-4xl font-bold my-4 text-center text-[#42f5f5]">
         How It <span className="text-white">Works</span>
       </h2>
       <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2" />

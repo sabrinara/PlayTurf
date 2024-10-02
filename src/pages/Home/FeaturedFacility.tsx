@@ -19,13 +19,13 @@ const FeaturedFacility = () => {
     console.log(facilities);
     return (
         <div className="bg-[#000924] h-screen text-[#42f5f5] my-20 mx-10">
-           <div className="md:mt-10 md:mb-14">
+           <div className="md:mt-10 mb-10 md:mb-14">
            <h2 className="text-2xl md:text-4xl font-bold my-4 text-center text-[#42f5f5]">Our Popular <span className="text-white">Facilities</span></h2>
            <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2"/>
            </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {
-                    facilities?.slice(0, 7).map((facility: TFacility) => (
+                    facilities?.slice(0, 3).map((facility: TFacility) => (
                         <div key={facility._id} className="flex flex-col rounded  bg-[#102e46] hover:transform hover:scale-105 duration-300">
                             <div className="relative">
                                 <img src={facility.imageUrl} alt={facility.name} className="h-72 w-full rounded-t-md " />
@@ -40,7 +40,7 @@ const FeaturedFacility = () => {
 
                                 <p className="font-light text-sm">{facility.description}</p>
                             </div>
-                            <div className="flex justify-between items-center md:items-start px-6 pb-6 ">
+                            <div className="flex justify-center md:justify-start items-center  px-6 pb-6 ">
 
                                 <Link to={`/facility/${facility._id}`}>
                                     <button className="bg-gradient-to-r from-[#000924] via-[#102e46] to-[#42f5f5] text-white font-bold py-2 px-4 rounded-sm">Explore More</button>

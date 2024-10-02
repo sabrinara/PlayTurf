@@ -1,5 +1,5 @@
-import { useAddBookingMutation, useGetSingleFacilityQuery } from "@/redux/api/api";
-import { useParams } from "react-router-dom";
+import {  useGetSingleFacilityQuery } from "@/redux/api/api";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../shared/Loading";
 import { toast } from "sonner";
 import { FaMapMarkerAlt } from "react-icons/fa";
@@ -9,7 +9,8 @@ const FacilityDetails = () => {
     const { id: _id } = useParams();
 
     const { data, isLoading } = useGetSingleFacilityQuery({ id: _id });
-    const [addBookings] = useAddBookingMutation();
+    const navigate = useNavigate();
+ 
 
     if (isLoading) {
         return (
@@ -19,17 +20,14 @@ const FacilityDetails = () => {
         );
     }
 
-    const facility = data?.data;  // Assuming facility is in data object
+    const facility = data?.data;  
     console.log(facility);
 
     const handleBooking = async () => {
-        try {
-            const result = await addBookings({ facilityId: _id }).unwrap();
-            console.log("Booked successfully: ", result);
-            toast.success("Booked successfully");
-        } catch (error) {
-            toast.error("Failed to book");
-        }
+       const addBooking = localStorage.setItem("facility", JSON.stringify(facility));
+       toast.success("Facility added to booking");
+       console.log(addBooking);
+       navigate("/dashboard/booking");
     };
 
     return (

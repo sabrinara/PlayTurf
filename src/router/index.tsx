@@ -7,6 +7,7 @@ import AddFacility from "@/pages/AdminDashboard/AddFacility";
 import AllBookings from "@/pages/AdminDashboard/AllBookings";
 import FacilityTable from "@/pages/AdminDashboard/FacilityTable";
 import Booking from "@/pages/Booking/Booking";
+import MyBooking from "@/pages/Booking/MyBooking";
 import Contact from "@/pages/Contact/Contact";
 import DashboardUser from "@/pages/DashboardUser/DashboardUser";
 import Facility from "@/pages/Facility/Facility";
@@ -41,7 +42,8 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
-      }
+      },
+      
      
       
     ],
@@ -72,14 +74,19 @@ const router = createBrowserRouter([
         path: "/dashboard/addadmin",
         element: <AddAdmin />,
       },
+     
       {
         path: "/dashboard/allbookings",
         element: <AllBookings />,
       },
       {
         path: "/dashboard/mybooking",
-        element: <Booking />,
-      }
+        element: <MyBooking />,
+      },
+      {
+        path: "/dashboard/booking",
+        element:<Booking/>
+      },
 
     ]
   },
