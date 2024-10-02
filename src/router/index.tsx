@@ -17,6 +17,7 @@ import Login from "@/pages/Login/Login";
 import Registration from "@/pages/Registration/Registration";
 import NotFound from "@/pages/shared/NotFound";
 import { createBrowserRouter } from "react-router-dom";
+import PrivateRouters from "./PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -85,7 +86,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/booking",
-        element:<Booking/>
+        element:<PrivateRouters> <Booking /> </PrivateRouters>,
       },
 
     ]
