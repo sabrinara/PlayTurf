@@ -22,6 +22,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaUserClock } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
+import ScrollButton from "../shared/ScrollButton";
 const AllBookings = () => {
     const { data, isLoading } = useGetAllBookingsQuery({});
     const [currentPage, setCurrentPage] = useState(1);
@@ -151,6 +152,7 @@ const AllBookings = () => {
                     </PaginationContent>
                 </Pagination>
             </div>
+            <ScrollButton />
         </div>
     );
 };

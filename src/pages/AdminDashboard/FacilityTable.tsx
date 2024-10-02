@@ -35,6 +35,7 @@ import { Link } from "react-router-dom";
 import { VscOpenPreview } from "react-icons/vsc";
 import { toast } from "sonner";
 import { TFacility } from "@/types";
+import ScrollButton from "../shared/ScrollButton";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -389,6 +390,7 @@ const FacilityTable = () => {
                     </PaginationContent>
                 </Pagination>
             </div>
+            <ScrollButton />
         </div>
     );
 };

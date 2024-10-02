@@ -1,3 +1,4 @@
+import ScrollButton from "../shared/ScrollButton";
 import ContactDetails from "./ContactDetails";
 import ContactForm from "./ContactForm";
 import MapIntegration from "./MapIntegration";
@@ -9,6 +10,7 @@ const Contact = () => {
             <ContactForm />
             <MapIntegration />
             <ContactDetails />
+            <ScrollButton />
         </div>
     );
 };

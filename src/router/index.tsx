@@ -65,24 +65,24 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/facilitytable",
-        element: <FacilityTable />,
+        element: <PrivateRouters> <FacilityTable /> </PrivateRouters>,
       },
       {
         path: "/dashboard/allusers",
-        element: <AddAdminTable />,
+        element: <PrivateRouters> <AddAdminTable /> </PrivateRouters>,
       },
       {
         path: "/dashboard/addadmin",
-        element: <AddAdmin />,
+        element: <PrivateRouters> <AddAdmin /> </PrivateRouters>,
       },
      
       {
         path: "/dashboard/allbookings",
-        element: <AllBookings />,
+        element: <PrivateRouters> <AllBookings /> </PrivateRouters>,
       },
       {
         path: "/dashboard/mybooking",
-        element: <MyBooking />,
+        element: <PrivateRouters> <MyBooking /> </PrivateRouters>,
       },
       {
         path: "/dashboard/booking",

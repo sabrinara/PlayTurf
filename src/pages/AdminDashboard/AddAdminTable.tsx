@@ -19,6 +19,7 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useState } from "react";
+import ScrollButton from "../shared/ScrollButton";
 
 const AddAdminTable = () => {
    
@@ -138,6 +139,8 @@ const AddAdminTable = () => {
                         </PaginationContent>
                     </Pagination>
                 </div>
+
+                <ScrollButton />
         </div>
     );
 };

@@ -1,4 +1,5 @@
 
+import ScrollButton from "../shared/ScrollButton";
 import Banner from "./Banner";
 import ExtraSection from "./ExtraSection";
 import FeaturedFacility from "./FeaturedFacility";
@@ -15,7 +16,7 @@ const Home = () => {
       <RoadMap />
       <ExtraSection />
       <Testimonials />
-     
+      <ScrollButton />
 
     </div>
   );

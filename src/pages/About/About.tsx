@@ -1,3 +1,4 @@
+import ScrollButton from "../shared/ScrollButton";
 import ContactSection from "./ContactSection";
 import HistorySection from "./HistorySection";
 import TeamSection from "./TeamSection";
@@ -24,7 +25,7 @@ const About = () => {
             <HistorySection />
             <ContactSection />
 
-
+            <ScrollButton />
         </div>
     );
 };

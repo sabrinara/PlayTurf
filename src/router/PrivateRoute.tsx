@@ -1,35 +1,36 @@
-
+import React, { ReactNode } from "react"; // Import React and ReactNode
 import Loading from "@/pages/shared/Loading";
 import { useGetUserProfileQuery } from "@/redux/api/api";
 import { Navigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 
 
-const PrivateRouters = ({  children }) => {
+interface PrivateRoutersProps {
+    children: ReactNode;
+}
+
+const PrivateRouters: React.FC<PrivateRoutersProps> = ({ children }) => {
     const id = localStorage.getItem("id");
     const { data, isLoading } = useGetUserProfileQuery({ id });
     
     const location = useLocation();
-    // console.log(location.pathname);
 
     if (isLoading) {
         return (
             <div>
                 <Loading />
             </div>
-        )
+        );
     }
 
- const { data: user } = data || {};
+    const { data: user } = data || {};
     if (user) {
-        return children;
+        return <>{children}</>; // Wrap children in a fragment
     }
-    return(
-        toast.error("Please login first"),
-        <Navigate to="/login" state={location.pathname} ></Navigate>
-
-    )
-
+    
+    // Use toast.error and return Navigate in a single expression
+    toast.error("Please login first");
+    return <Navigate to="/login" state={{ from: location.pathname }} />;
 };
 
 export default PrivateRouters;

@@ -12,6 +12,7 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Link } from "react-router-dom";
+import ScrollButton from "../shared/ScrollButton";
 
 const Facility = () => {
     const { data, isLoading } = useGetAllFacilitiesQuery({});
@@ -170,7 +171,7 @@ const Facility = () => {
                     </Pagination>
                 </div>
 
-
+                <ScrollButton />
         </div>
     );
 };
