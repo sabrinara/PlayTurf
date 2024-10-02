@@ -85,14 +85,14 @@ const AddFacility = () => {
             description: formData.description,
             location: formData.location,
             imageUrl: imageUrl,
-            pricePerHour: formData.pricePerHour
+            pricePerHour: Number (formData.pricePerHour),
         };
 
         try {
             const result = await addfacility(facilityData).unwrap();
             console.log("Add facility successful: ", result);
             toast.success("Facility added successfully");
-            navigate("/dashboard/facility");
+            navigate("/dashboard/facilitytable");
         } catch (err) {
             console.error("Add facility failed: ", err);
             toast.error("Add facility failed");
@@ -104,10 +104,10 @@ const AddFacility = () => {
 
 
     return (
-        <div className="pt-10">
+        <div className="bg-[#000924] h-screen flex items-center justify-center   pb-10">
 
 
-            <div className="absolute flex flex-col items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+           
                 <Card className="w-[350px] md:w-[500px] bg-[#102e47] md:bg-transparent md:backdrop-blur-md my-10 border border-[#000924]" >
                     <CardHeader>
                         <h1 className="text-[#42f5f5] text-center text-3xl">Add <span className="text-white">Facility</span></h1>
@@ -143,11 +143,23 @@ const AddFacility = () => {
                                         required
                                     />
                                 </div>
+                                <div className="flex flex-col space-y-1.5 text-[#42f5f5]">
+                                    <Label htmlFor="location">Location</Label>
+                                    <Input
+                                         className="text-[#42f5f5] bg-[#102e47]"
+                                        type="text"
+                                        id="location"
+                                        placeholder="Write the facility location"
+                                        value={formData.location}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </div>
 
                                 <div className="flex flex-col space-y-1.5 text-[#42f5f5]">
                                     <Label htmlFor="pricePerHour">Price per hour</Label>
                                     <Input
-                                         className="text-[#42f5f5] bg-[#102e47]"
+                                        className="text-[#42f5f5] bg-[#102e47]"
                                         type="number"
                                         id="pricePerHour"
                                         placeholder="Enter the facility price per hour"
@@ -187,7 +199,7 @@ const AddFacility = () => {
                     </CardContent>
                 </Card>
             </div>
-        </div>
+
     );
 };
 

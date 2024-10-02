@@ -81,7 +81,7 @@ export const baseApi = createApi({
     }),
     addFacility: builder.mutation({
       query: (data) => ({
-        url: "/facilities",
+        url: "/facility",
         method: "POST",
         body: data,
         headers: {

@@ -19,7 +19,6 @@ import {
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogFooter,
     DialogHeader,
@@ -45,7 +44,7 @@ const FacilityTable = () => {
     const [updateFacility] = useUpdateFacilityMutation();
     const [deleteFacility] = useDeleteFacilityMutation();
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 2;
+    const itemsPerPage = 5;
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [sortByPrice, setSortByPrice] = useState<boolean>(false);
     const [editFacilityId, setEditFacilityId] = useState<string>("");
