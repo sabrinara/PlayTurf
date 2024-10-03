@@ -6,7 +6,12 @@ const AFacilityCard = () => {
     const facilityData = facility ? JSON.parse(facility) : null;
     
     if (!facilityData) {
-        return <p>Facility data not found.</p>;
+        return(
+
+            < div className="text-lg py-4 px-6 h-36 mt-40 text-[#42f5f5] text-center">
+                <p>Didn't select any facility. <br /> <span><Link to="/facility" className="text-[#42f5f5] underline">Select Facility</Link></span></p>
+            </div>
+        );
     }
 
     return (

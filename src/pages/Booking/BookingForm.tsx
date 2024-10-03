@@ -35,7 +35,7 @@ const BookingForm = () => {
             localStorage.removeItem('facility');
             toast.success("Booking successful!");
             navigate("/dashboard/mybooking")
-            // console.log("Booking successful");
+           
         } catch (error) {
             toast.error("Booking failed");
             console.log(error);
