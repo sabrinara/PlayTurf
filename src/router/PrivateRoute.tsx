@@ -25,10 +25,9 @@ const PrivateRouters: React.FC<PrivateRoutersProps> = ({ children }) => {
 
     const { data: user } = data || {};
     if (user) {
-        return <>{children}</>; // Wrap children in a fragment
+        return <>{children}</>; 
     }
     
-    // Use toast.error and return Navigate in a single expression
     toast.error("Please login first");
     return <Navigate to="/login" state={{ from: location.pathname }} />;
 };

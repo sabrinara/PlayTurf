@@ -23,13 +23,21 @@ const FacilityDetails = () => {
     const facility = data?.data;  
     console.log(facility);
 
-    const handleBooking = async () => {
-       const addBooking = localStorage.setItem("facility", JSON.stringify(facility));
-       toast.success("Facility added to booking");
-       console.log(addBooking);
-       navigate("/dashboard/booking");
-    };
+    const token = localStorage.getItem("token");
 
+    const handleBooking = async () => { 
+        if (token) {
+        const addBooking = localStorage.setItem("facility", JSON.stringify(facility));
+        toast.success("Facility added to booking");
+        console.log(addBooking);
+        navigate("/dashboard/booking");
+        } else {
+            toast.error("Please login to continue");
+            navigate("/login");
+        }
+     };
+ 
+ 
     return (
         <div className="flex flex-col items-center p-4 text-[#42f5f5] min-h-screen mt-4 md:mt-10">
             <div className="max-w-6xl w-full rounded-lg shadow-lg p-10 animate__animated animate__fadeIn bg-[#102e47]">
@@ -54,7 +62,7 @@ const FacilityDetails = () => {
                             </div>
                             <p className="hidden md:block text-xl font-bold mb-2">Price: <span className="text-white font-bold">{facility?.pricePerHour || 0}/hr $</span></p>
 
-                            {/* <p className="text-2xl font-bold mb-2">{facility?.location || 'Facility Location Not available'}</p> */}
+                        
                             < div className="flex items-center gap-2 text-[20px] md:text-2xl font-bold mb-2 text-white">
                                 <FaMapMarkerAlt className="text-[#42f5f5] text-4xl md:text-2xl" />
                                 {facility?.location}
@@ -66,7 +74,7 @@ const FacilityDetails = () => {
                         <div className="flex justify-center md:justify-end animate-bounce mt-10">
                             <button
                                 onClick={handleBooking}
-                                className="font-bold bg-[#42f5f5] text-[#102e47] px-6 py-2 rounded shadow hover:bg-[#000924] hover:text-[#42f5f5] text-xl"
+                                className="bg-gradient-to-r from-[#000924] via-[#102e46] to-[#42f5f5] text-white  md:text-lg font-bold py-3 px-6 rounded-sm shadow-md hover:scale-105 transition-transform duration-300"
                                 title="Booking"
                             >
                                 Book Now
