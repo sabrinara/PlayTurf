@@ -19,10 +19,10 @@ const FeaturedFacility = () => {
     console.log(facilities);
     return (
         <div className="bg-[#000924] h-screen text-[#42f5f5] my-20 mx-10">
-           <div className="md:mt-10 mb-10 md:mb-14">
-           <h2 className="text-2xl md:text-4xl font-bold my-4 text-center text-[#42f5f5]">Our Popular <span className="text-white">Facilities</span></h2>
-           <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2"/>
-           </div>
+            <div className="md:mt-10 mb-10 md:mb-14">
+                <h2 className="text-2xl md:text-4xl font-bold my-4 text-center text-[#42f5f5]">Our Popular <span className="text-white">Facilities</span></h2>
+                <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2" />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {
                     facilities?.slice(0, 3).map((facility: TFacility) => (
@@ -38,7 +38,10 @@ const FeaturedFacility = () => {
                             <div className="text-xl py-4 px-6 h-24">
                                 <h1 className="font-bold text-2xl text-[#42f5f5]"> {facility.name}</h1>
 
-                                <p className="font-light text-sm">{facility.description}</p>
+                                <p className="font-light text-sm">
+                                    {facility.description.split('.')[0] + '.'}
+                                </p>
+
                             </div>
                             <div className="flex justify-center md:justify-start items-center  px-6 pb-6 ">
 

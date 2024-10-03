@@ -31,7 +31,7 @@ const Facility = () => {
 
     const facilities: TFacility[] = data?.data || [];
 
- 
+
     const filteredData = facilities.filter((facility: TFacility) => {
         const term = searchTerm.toLocaleUpperCase();
         return (
@@ -63,7 +63,7 @@ const Facility = () => {
         <div className="bg-[#000924]  text-[#42f5f5] my-10 md:my-16 mx-2 md:mx-6">
 
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:mb-10">
-     
+
                 <div className="flex relative bg-[#000924] hover:bg-[#102e46] hover:text-white">
                     <input
                         type="text"
@@ -75,7 +75,7 @@ const Facility = () => {
                     <FaSearch className="absolute left-3  top-1/2 transform -translate-y-1/2 text-[#42f5f5]" />
                 </div>
 
-        
+
                 <button
                     onClick={toggleSortByPrice}
                     className={`border border-[#42f5f5] bg-[#102e46] text-[#42f5f5] px-6 py-2 rounded-full font-semibold ${sortByPrice ? "bg-[#42f5f5] text-white" : ""
@@ -85,7 +85,7 @@ const Facility = () => {
                 </button>
             </div>
 
-           
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 {currentFacilities.length > 0 ? (
                     currentFacilities.map((facility: TFacility) => (
@@ -105,11 +105,14 @@ const Facility = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="text-xl py-4 px-6 h-24">
+                            <div className="text-xl py-4 px-6 h-28">
                                 <h1 className="font-bold text-2xl text-[#42f5f5]">
                                     {facility.name}
                                 </h1>
-                                <p className="font-light text-sm">{facility.description}</p>
+                                <p className="font-light text-sm">
+                                    {facility.description}
+                                </p>
+
                             </div>
                             <div className="flex justify-center items-center  px-6 pb-6">
                                 <Link to={`/facility/${facility._id}`}>
@@ -125,53 +128,53 @@ const Facility = () => {
                 )}
             </div>
 
-   
-                <div className="my-6 md:my-10 text-[#42f5f5]">
-                    <Pagination>
-                        <PaginationContent>
-                     
-                            <PaginationItem>
-                                <PaginationPrevious>
-                                    <PaginationLink
-                                        className={`hover:bg-[#102e46] hover:text-[#42f5f5] ${currentPage === 1 && "opacity-50 cursor-not-allowed"}`}
-                                        onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
-                                        
-                                    >
-                                        Previous
-                                    </PaginationLink>
-                                </PaginationPrevious>
+
+            <div className="my-6 md:my-10 text-[#42f5f5]">
+                <Pagination>
+                    <PaginationContent>
+
+                        <PaginationItem>
+                            <PaginationPrevious>
+                                <PaginationLink
+                                    className={`hover:bg-[#102e46] hover:text-[#42f5f5] ${currentPage === 1 && "opacity-50 cursor-not-allowed"}`}
+                                    onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+
+                                >
+                                    Previous
+                                </PaginationLink>
+                            </PaginationPrevious>
+                        </PaginationItem>
+
+
+                        {[...Array(totalPages)].map((_, index) => (
+                            <PaginationItem key={index}>
+                                <PaginationLink
+                                    isActive={currentPage === index + 1}
+                                    onClick={() => handlePageChange(index + 1)}
+                                    className={`hover:bg-[#42f5f5] hover:text-[#102e46] ${currentPage === index + 1 ? "bg-[#42f5f5] text-[#102e46]" : ""}`}
+                                >
+                                    {index + 1}
+                                </PaginationLink>
                             </PaginationItem>
+                        ))}
 
-                            
-                            {[...Array(totalPages)].map((_, index) => (
-                                <PaginationItem key={index}>
-                                    <PaginationLink
-                                        isActive={currentPage === index + 1}
-                                        onClick={() => handlePageChange(index + 1)}
-                                        className={`hover:bg-[#42f5f5] hover:text-[#102e46] ${currentPage === index + 1 ? "bg-[#42f5f5] text-[#102e46]" : ""}`}
-                                    >
-                                        {index + 1}
-                                    </PaginationLink>
-                                </PaginationItem>
-                            ))}
 
-                           
-                            <PaginationItem>
-                                <PaginationNext>
-                                    <PaginationLink
-                                        className={`hover:bg-[#000924] hover:text-[#42f5f5] ${currentPage === totalPages && "opacity-50 cursor-not-allowed"}`}
-                                        onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
-                                       
-                                    >
-                                        Next
-                                    </PaginationLink>
-                                </PaginationNext>
-                            </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
-                </div>
+                        <PaginationItem>
+                            <PaginationNext>
+                                <PaginationLink
+                                    className={`hover:bg-[#000924] hover:text-[#42f5f5] ${currentPage === totalPages && "opacity-50 cursor-not-allowed"}`}
+                                    onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
 
-                <ScrollButton />
+                                >
+                                    Next
+                                </PaginationLink>
+                            </PaginationNext>
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+            </div>
+
+            <ScrollButton />
         </div>
     );
 };

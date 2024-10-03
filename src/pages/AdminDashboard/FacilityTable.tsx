@@ -36,6 +36,7 @@ import { VscOpenPreview } from "react-icons/vsc";
 import { toast } from "sonner";
 import { TFacility } from "@/types";
 import ScrollButton from "../shared/ScrollButton";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -155,9 +156,16 @@ const FacilityTable = () => {
         );
     });
 
-    const sortedData = sortByPrice
-        ? [...filterData].sort((a, b) => a.pricePerHour - b.pricePerHour)
-        : [...filterData].sort((a, b) => b.pricePerHour - a.pricePerHour);
+    const sortedData = [...filterData].sort((a, b) => {
+        if (sortByPrice) {
+            return ( a.pricePerHour - b.pricePerHour ) * ( b.pricePerHour - a.pricePerHour );
+        }
+        return 0;
+    })
+
+    // const sortedData = sortByPrice
+    //     ? [...filterData].sort((a, b) => a.pricePerHour - b.pricePerHour)
+    //     : [...filterData].sort((a, b) => b.pricePerHour - a.pricePerHour);
 
     const paginatedData = sortedData.slice(
         (currentPage - 1) * itemsPerPage,
@@ -274,7 +282,7 @@ const FacilityTable = () => {
 
                                             <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2" />
                                         </DialogHeader>
-
+                                        <form onSubmit={handleUpdateFacility}>
                                         <div className="space-y-2">
                                             <Label htmlFor="name">Name</Label>
                                             <Input
@@ -327,14 +335,16 @@ const FacilityTable = () => {
                                         </div>
 
                                         <DialogFooter>
+                                            <DialogClose >
                                             <Button
-                                                disabled={uploading}
-                                                onClick={handleUpdateFacility}
-                                                className="text-[#102e47] bg-[#42f5f5] hover:bg-[#42f5f5]"
+                                                type="submit"
+                                                className="text-[#42f5f5] bg-[#102e47] hover:bg-[#42f5f5] mt-3 hover:text-[#102e47] "
                                             >
                                                 {uploading ? "Updating..." : "Update Facility"}
                                             </Button>
+                                            </DialogClose>
                                         </DialogFooter>
+                                        </form>
                                     </DialogContent>
                                 </Dialog>
                             </TableCell>

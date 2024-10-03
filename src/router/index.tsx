@@ -51,17 +51,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashBoardLayout />,
+    element: <PrivateRouters> <DashBoardLayout /> </PrivateRouters>,
     errorElement: <NotFound />,
     children: [
       { 
         path: "",
-        element: <DashboardUser />,
+        element: <PrivateRouters> <DashboardUser /> </PrivateRouters>,
       },
      
       {
         path: "/dashboard/addfacility",
-        element: <AddFacility />,
+        element: <PrivateRouters> <AddFacility /> </PrivateRouters>,
       },
       {
         path: "/dashboard/facilitytable",
