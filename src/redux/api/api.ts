@@ -133,7 +133,7 @@ export const baseApi = createApi({
       invalidatesTags: ["facility"],
     }),
 
-    // Soft delete a facility by ID (Admin only)
+  
     deleteFacility: builder.mutation({
       query: (id) => ({
         url: `/facility/${id}`,
@@ -141,7 +141,7 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["facility"],
     }),
-    // Create a booking
+
     addBooking: builder.mutation({
       query: (data) => ({
         url: "/bookings",
@@ -154,10 +154,12 @@ export const baseApi = createApi({
       invalidatesTags: ["bookings"],
     }),
 
-    // Check facility availability
+    
     checkAvailability: builder.query({
-      query: (date) => ({
-        url: `/bookings/check-availability?date=${date}`,
+      query: (date) => (
+        console.log({ date }),
+      {
+        url: `/check-availability?date=${date}`,
         method: "GET",
       }),
       providesTags: ["bookings"],
