@@ -20,9 +20,9 @@ const AvailabilityChecker = () => {
         
         if (selectedDate) {
             if (availableSlots?.length) {
-                toast.success(`Available Slots on ${selectedDate}`);
+                toast.success(`Check available Slots on ${selectedDate}`);
             } else {
-                toast.error(`No slots available on ${selectedDate}`);
+                toast.error(`All slots available on ${selectedDate}`);
             }
         }
         setUploading(false);
@@ -37,8 +37,8 @@ const AvailabilityChecker = () => {
         let hours = parseInt(hour);
         const suffix = hours >= 12 ? 'PM' : 'AM';
         
-        // Convert 24-hour time to 12-hour format
-        hours = hours % 12 || 12; // If hours is 0 (midnight), change it to 12
+       
+        hours = hours % 12 || 12; 
 
         return `${hours}:${minute} ${suffix}`;
     };
