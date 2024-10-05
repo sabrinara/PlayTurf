@@ -1,5 +1,5 @@
 # PlayTurf- A Sports Facility Booking Website
-###   [Live Website] (https://playturf.netlify.app)
+###   [Live Website](https://playturf.netlify.app)
 <!--
 ### **Submission : (Please check my submissions:)**
 
