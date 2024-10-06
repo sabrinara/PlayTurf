@@ -48,17 +48,17 @@
 - Dynamic pricing details
 - Proceed to the checkout button
 
-#### 5. Checkout Page
+#### 5. Booking Page
+- Facility details with a view button
+- Facility slot checking via date.
+- Book facility with desired time.
+- Pay and Place booking functionality with available time management
 
-- User details collection (name, email, phone number, address)
-- Payment method.
-- Place order functionality with stock management
-
-#### 6. Product Management
-- Product list table with action buttons
+#### 6. Facility Management
+- Facility list table with action buttons
 - Update and delete functionality with confirmation prompts
-- Add new product form
-- pagination view all products.
+- Add new facility form
+- pagination view all facilities.
 
 #### 7. About Us Page
 - Company overview, 
