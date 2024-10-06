@@ -27,7 +27,7 @@ PlayTurf is a sports facility booking platform for enthusiasts, utilizing cuttin
 - Parallax section
 - What Our Client Say
 - Footer with contact and social media links
-
+  
 #### 2. Facility Page
 
 - Facility listings with images, names, prices per hour, description, and details button
@@ -35,43 +35,55 @@ PlayTurf is a sports facility booking platform for enthusiasts, utilizing cuttin
 - Sorting options price per hour
 - Pagination. 
 
-
 #### 3. Facility Details Page
 
 - Product information (name, price per hour, location, description, image)
 - Book now button
+- It will navigate to the booking page if the user is logged in.
 
 
-#### 4. Booking Page
-- List of cart items with quantity controls
-- Button to remove items
-- Dynamic pricing details
-- Proceed to the checkout button
+#### 4. My Booking page 
+
+- List of all bookings
+- Can cancel the booking with a dedicated button available.
+- Pagination is available.
 
 #### 5. Booking Page
+
 - Facility details with a view button
 - Facility slot checking via date.
 - Book facility with desired time.
 - Pay and Place booking functionality with available time management
 
 #### 6. Facility Management
+
 - Facility list table with action buttons
 - Update and delete functionality with confirmation prompts
 - Add new facility form
 - pagination view all facilities.
 
-#### 7. About Us Page
-- Company overview, 
-- team introduction,
-- customer testimonials
-- Contact information with basic animations and gradients
+#### 7. All user Page
+- List of all types of users, (admin and users)
+- Details information of users
 
+#### 8. Add admin 
+- A form to add new admin information
 
-#### 8. Contact Page
- - Order list table with order details
+#### 9. About Us Page
+- Company mission.
+- Team introduction.
+- Company History.
+- Company contact, location & information.
+
+#### 10. Contact Page
+
+- Contact us form.
+- Map with location.
+- Contact information.
  
 
 ### Additional Features
+
 - Debounced API Calls: Reduces API call frequency during searches
 - Page Refresh Warning: Warns users before refreshing if the cart is not empty
 - Pagination: Custom implementation for product listings
