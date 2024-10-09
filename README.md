@@ -1,30 +1,166 @@
-# React + TypeScript + Vite
+# PlayTurf- A Sports Facility Booking Website
+###   [Live Website](https://playturf.netlify.app)
+<!--
+### **Submission : (Please check my submissions:)**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Frontend Live Link: [Live Website](https://fitflex-equipment-selling.netlify.app)
+- Backend Live Link: [Backend Link](https://fit-flex-server-ochre.vercel.app/)
+- GitHub Repository URL (Frontend): https://github.com/ashiqee/L2B3-assignment-4-ZFitX-0920
+- GitHub Repository URL (Backend): https://github.com/ashiqee/ZfitX-Backend
+-->
 
-Currently, two official plugins are available:
+PlayTurf is a sports facility booking platform for enthusiasts, utilizing cutting-edge technologies like React, Redux, Mongoose, and Express. The website will deliver a smooth and intuitive booking experience, featuring dynamic facility listings, immersive facility detail pages, and a seamless, user-friendly booking system. Administrators will benefit from powerful facility management tools, while users will enjoy advanced functionalities like lightning-fast, debounced search, and smart page loading for an optimized experience. For secure and hassle-free booking. Role-based dashboard, admin can manage facility curd operations. Admin can also add admin and can see user listing. This project is designed to create a modern, high-performance online facility booking, offering everything sports lovers need in one place.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technical Stack
+- Frontend: React, Redux for state management.
+- Backend: Node.js, Express, Mongoose, CORS.
+- Database: MongoDB for storing product and user data.
+- TypeScript: Ensures robust type safety and code quality.
 
-## Expanding the ESLint configuration
+## Core Features
+#### 1. Homepage
+- Header with logo and site name
+- Navigation links
+- Banner Section
+- Featured Facility
+- How it works section
+- Parallax section
+- What Our Client Say
+- Footer with contact and social media links
+  
+#### 2. Facility Page
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Facility listings with images, names, prices per hour, description, and details button
+- Search bar
+- Sorting options price per hour
+- Pagination. 
 
-- Configure the top-level `parserOptions` property like this:
+#### 3. Facility Details Page
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- Product information (name, price per hour, location, description, image)
+- Book now button
+- It will navigate to the booking page if the user is logged in.
+
+
+#### 4. My Booking page 
+
+- List of all bookings
+- Can cancel the booking with a dedicated button available.
+- Pagination is available.
+
+#### 5. Booking Page
+
+- Facility details with a view button
+- Facility slot checking via date.
+- Book facility with desired time.
+- Pay and Place booking functionality with available time management
+
+#### 6. Facility Management
+
+- Facility list table with action buttons
+- Update and delete functionality with confirmation prompts
+- Add new facility form
+- pagination view all facilities.
+
+#### 7. All user Page
+- List of all types of users, (admin and users)
+- Details information of users
+
+#### 8. Add admin 
+- A form to add new admin information
+
+#### 9. About Us Page
+- Company mission.
+- Team introduction.
+- Company History.
+- Company contact, location & information.
+
+#### 10. Contact Page
+
+- Contact us form.
+- Map with location.
+- Contact information.
+ 
+
+### Additional Features
+
+- Debounced API Calls: Reduces API call frequency during searches
+- Page Refresh Warning: Warns users before refreshing if the cart is not empty
+- Pagination: Custom implementation for product listings
+
+
+## Table of Contents for using
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Running the Application](#running-the-application)
+
+
+## Prerequisites
+
+Ensure you have the following installed on your local machine:
+
+- Node.js (version 14 or higher)
+- npm (version 6 or higher) or yarn
+- MongoDB (running locally or a connection URI to a remote instance)
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+   <!-- Frontend clone  -->
+   git clone https://github.com/ashiqee/L2B3-assignment-4-ZFitX-0920.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+ ```bash
+   <!-- Backend clone  -->
+   git clone https://github.com/ashiqee/ZfitX-Backend.git
+```
+
+
+2. Install dependencies:
+
+### usi npm:
+
+```tsc
+npm i
+```
+
+## Configuration
+
+1. Create a `.env.local` file in the root directory of the project and add the following enviroment variables:
+
+
+Frontend .env.local
+```bash
+VITE_PAYMENT_GATEWAY=
+```
+
+Banckend .env
+```bash
+
+NODE_ENV = development
+PORT=5000
+DATABASE_URL = 
+STRIPE_SECRET_KEY=
+```
+
+### Running the Application both
+
+1. To compile and run the TypeScript application in development mode with hot-reloading, use:
+
+```bash
+npm run dev
+```
+
+2. To build the application for production
+
+```bash
+npm run build
+```
+
+Visit: http://localhost:5173/
+
+This project aims to create a modern, efficient, and user-centric online store for fitness enthusiasts, providing a smooth and enjoyable shopping experience while ensuring secure and reliable transactions.
