@@ -63,6 +63,18 @@ const Registration = () => {
         e.preventDefault();
         setUploading(true);
 
+        if (formData.phone.length !== 11) {
+            toast.error("Phone number must be 11 digits");
+            setUploading(false);
+            return;
+        }
+
+        if(formData.password.length < 8) {
+            toast.error("Password must be at least 8 characters");
+            setUploading(false);
+            return;
+        }
+
         let imageUrl = "";
         if (formData.imageFile) {
             imageUrl = await uploadImageToImgbb(formData.imageFile);
