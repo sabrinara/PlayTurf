@@ -67,11 +67,11 @@ const MyBooking = () => {
 
     return (
         <div className="pt-10">
-            <h1 className="text-[#42f5f5] text-center text-3xl">All <span className="text-white">Users</span></h1>
-            <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto mb-2" />
+            <h1 className="text-[#42f5f5] text-center text-3xl">My <span className="text-white">Bookings</span></h1>
+            <hr className="border-2 border-[#42f5f5] w-5/12 md:w-1/12 mx-auto my-2" />
             <Table className="text-[#42f5f5]">
                 <TableHeader>
-                    <TableRow>
+                    <TableRow className="hover:bg-[#102e47]">
                         <TableHead className="">S/N</TableHead>
                         <TableHead>Booking Date</TableHead>
                         <TableHead>StartTime</TableHead>

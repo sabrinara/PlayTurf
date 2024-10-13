@@ -33,7 +33,7 @@ const Testimonials = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-10 ">
-        {user?.slice(4, 8).map((item: TUsers, index: number) => (
+        {user?.slice(4, 7).map((item: TUsers, index: number) => (
           <div
             key={item._id}
             data-aos="fade-up"
